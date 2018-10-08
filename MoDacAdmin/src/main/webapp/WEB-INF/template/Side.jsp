@@ -81,12 +81,12 @@
       </a>
       <div class="collapse" id="ui-phhos">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-          	약국정보관리
-          </li>
-          <li class="nav-item">
-          	병원정보관리
-          </li>
+        	<li class="nav-item">
+				<a href="<c:url value='CommonPharmacy.do'/>">약국정보관리</a>
+			</li>
+			<li class="nav-item">
+				<a href="<c:url value='CommonHospital.do'/>">병원정보관리</a>
+			</li>
         </ul>
       </div>
     </li>
@@ -114,7 +114,7 @@
       </a>
     </li>
 	<li class="nav-item">
-      <a class="nav-link" href="pages/forms/basic_elements.html">
+      <a class="nav-link" href="<c:url value='healthinfoList.do'/>">
         <i class="menu-icon fa fa-info"></i>
         <span class="menu-title">건강정보</span>
       </a>

@@ -1,23 +1,3 @@
-<%-- 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">    
-
-<title>관리자페이지</title>
-</head>
-<body>
-	
-	<c:redirect url="main.do"></c:redirect>
-</body>
-</html>
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -63,15 +43,15 @@
      function drawChart() {
        var data = google.visualization.arrayToDataTable([
          ['Task', 'Hours per Day'],
-         ['Work',     11],
-         ['Eat',      2],
-         ['Commute',  2],
-         ['Watch TV', 2],
-         ['Sleep',    7]
+         ['10살~20살 미만',     11],
+         ['20살 이상~30살 미만',      2],
+         ['30살 이상 ~ 40살 미만',  2],
+         ['40살 이상 50살 미만', 2],
+         ['50살 이상',    7]
        ]);
 
        var options = {
-         title: 'My Daily Activities',
+         title: '나이대별 회원수',
          is3D: true,
        };
 
@@ -80,16 +60,19 @@
        
        
        var data = google.visualization.arrayToDataTable([
-           ['Year', 'Sales'],
-           ['2013',  1000],
-           ['2014',  1170],
-           ['2015',  660],
-           ['2016',  1030]
+           ['요일별', '이용수'],
+           ['월',  1000],
+           ['화',  1170],
+           ['수',  660],
+           ['목',  770],
+           ['금',  870],
+           ['토',  60],
+           ['일',  500]
          ]);
 
          var options = {
-           title: 'Company Performance',
-           hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+           title: '요일 별 이용 현환',
+           hAxis: {title: '요일별',  titleTextStyle: {color: '#333'}},
            vAxis: {minValue: 0}
          };
 
@@ -120,9 +103,9 @@
                       <i class="mdi mdi-cube text-danger icon-lg"></i>
                     </div>
                     <div class="float-right">
-                      <p class="mb-0 text-right">Total Revenue</p>
+                      <p class="mb-0 text-right">병원 수</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                        <h3 class="font-weight-medium text-right mb-0">2089</h3>
                       </div>
                     </div>
                   </div>
@@ -140,7 +123,7 @@
                       <i class="mdi mdi-receipt text-warning icon-lg"></i>
                     </div>
                     <div class="float-right">
-                      <p class="mb-0 text-right">Orders</p>
+                      <p class="mb-0 text-right">약국 수</p>
                       <div class="fluid-container">
                         <h3 class="font-weight-medium text-right mb-0">3455</h3>
                       </div>
@@ -160,7 +143,7 @@
                       <i class="mdi mdi-poll-box text-success icon-lg"></i>
                     </div>
                     <div class="float-right">
-                      <p class="mb-0 text-right">Sales</p>
+                      <p class="mb-0 text-right">일반사용자 수</p>
                       <div class="fluid-container">
                         <h3 class="font-weight-medium text-right mb-0">5693</h3>
                       </div>
@@ -180,7 +163,7 @@
                       <i class="mdi mdi-account-location text-info icon-lg"></i>
                     </div>
                     <div class="float-right">
-                      <p class="mb-0 text-right">Employees</p>
+                      <p class="mb-0 text-right">병원제휴 수</p>
                       <div class="fluid-container">
                         <h3 class="font-weight-medium text-right mb-0">246</h3>
                       </div>
@@ -217,7 +200,7 @@
               </div>
             </div>
           </div>
-  </div>
+  		</div>
 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

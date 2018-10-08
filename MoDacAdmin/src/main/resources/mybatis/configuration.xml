@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--
+	mybatis 환경설정파일
+	1.데이터베이스 연결정보 설정
+	2.매퍼파일의 위치정보 설정
+-->
+ 
+<configuration>
+	<!-- 자바빈별칭: 매퍼파일에서 환결설정 파일로 위치됨 -->
+	<!-- 
+	<typeAliases>
+		<typeAlias type="com.modu.modac.service.TestDto" alias="testDto"/> 
+	</typeAliases>
+	 -->
+	<!-- DTO등록 할 때 복사해서 쓰면 됨 별칭은 xxDto로 함 -->
+	<!--  
+	<typeAliases>
+		<typeAlias type="com.modu.modac.service.XxDto" alias="xxDto"/> 
+	</typeAliases>
+	-->
+	<!-- 
+		매퍼파일(sql쿼리와 자바빈 매핑) 정보 설정
+	-->
+	<!-- 
+	<mappers>
+		<mapper resource="mybatis/Test.xml" />
+	</mappers>
+	 -->
+</configuration>

@@ -50,5 +50,5 @@
 	</beans:bean>
 
 	<!-- 빈에서 사용할 키 값이 있는 리소스파일(.properties) 사용을 위한 설정 -->
-<!-- 	<context:property-placeholder location="classpath:memoresources/memo.properties"/> -->
+	<context:property-placeholder location="classpath:mdresources/modac.properties"/>
 </beans:beans>
