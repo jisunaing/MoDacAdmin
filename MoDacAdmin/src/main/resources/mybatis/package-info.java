@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author jisun
- *
- */
-package mybatis;

@@ -1,4 +1,4 @@
-package com.modu.modacadmin;
+package com.modu.modacadmin.web;
 
 import java.util.Map;
 
@@ -48,9 +48,7 @@ public class CommonManagingController {
 	// [병원 상세보기]
 	@RequestMapping("HospitalView.do")
 	public String viewHospital(@RequestParam Map map) throws Exception {
-
 		System.out.println("병원 상세보기 no:"+map.get("no"));
-		
 		return "backend/pharmnhospital/HospitalView.tiles";
 	}
 	
