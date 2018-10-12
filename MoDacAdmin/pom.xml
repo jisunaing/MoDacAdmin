@@ -23,9 +23,7 @@
 	<dependencies>
 
 		<!-- Spring -->
-
 		<dependency>
-
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
@@ -192,6 +190,11 @@
 		</dependency>
 		<!-- mybatis적용을 위한 라이브러리 추가 끝 -->
 
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>12.1.0.1-atlassian-hosted</version>
+		</dependency>
 		
 
 		<!-- json라이브러리 -->
@@ -205,6 +208,9 @@
 
 		</dependency>
 		<!-- json라이브러리 추가끝 -->
+		
+				
+		
 	</dependencies>
 
  
@@ -278,4 +284,15 @@
             </plugin>
         </plugins>
     </build>
+    
+    
+	    
+	<repositories>
+		<repository>
+			<id>oracle</id>
+			<name>ORACLE JDBC Repository</name>
+			<url>https://maven.atlassian.com/3rdparty/</url>
+		</repository>
+	</repositories>
+			
 </project>
