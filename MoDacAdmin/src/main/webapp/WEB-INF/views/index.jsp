@@ -1,4 +1,3 @@
-<%-- 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -13,11 +12,13 @@
 <title>관리자페이지</title>
 </head>
 <body>
-	
-	<c:redirect url="main.do"></c:redirect>
+<c:redirect url="main.do"></c:redirect>
 </body>
 </html>
---%>
+<!-- 
+아래는 원래 내용 나중에 지울거
+-->
+<%-- 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -112,6 +113,9 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
+          			<span style="color:pink;font-size:3em;">${testvar }</span>
+          			<span style="color:pink;font-size:3em;">${testvar }</span>
+          			<span style="color:pink;font-size:3em;">${testvar }</span>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
               <div class="card card-statistics">
                 <div class="card-body">
@@ -121,6 +125,9 @@
                     </div>
                     <div class="float-right">
                       <p class="mb-0 text-right">Total Revenue</p>
+                      <!-- 
+                      <span><%=session.getAttribute("MID") != null? session.getAttribute("MID"): "" %></span>
+                      -->
                       <div class="fluid-container">
                         <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
                       </div>
@@ -231,4 +238,4 @@
   <!-- container-scroller -->
 
 </body>
-</html>
+</html> --%>

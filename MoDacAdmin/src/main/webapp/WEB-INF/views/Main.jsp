@@ -43,11 +43,11 @@
      function drawChart() {
        var data = google.visualization.arrayToDataTable([
          ['Task', 'Hours per Day'],
-         ['10살~20살 미만',     11],
-         ['20살 이상~30살 미만',      2],
-         ['30살 이상 ~ 40살 미만',  2],
-         ['40살 이상 50살 미만', 2],
-         ['50살 이상',    7]
+         ['20살 미만', ${ten}],
+         ['20살 이상~30살 미만', ${two}],
+         ['30살 이상 ~ 40살 미만', ${three}],
+         ['40살 이상 50살 미만', ${fors}],
+         ['50살 이상', ${five}]
        ]);
 
        var options = {
@@ -61,13 +61,13 @@
        
        var data = google.visualization.arrayToDataTable([
            ['요일별', '이용수'],
-           ['월',  1000],
-           ['화',  1170],
-           ['수',  660],
-           ['목',  770],
-           ['금',  870],
-           ['토',  60],
-           ['일',  500]
+           ['월',  ${mon}],
+           ['화',  ${tue}],
+           ['수',  ${wed}],
+           ['목',  ${thu}],
+           ['금',  ${fri}],
+           ['토',  ${dat}],
+           ['일',  ${sun}]
          ]);
 
          var options = {
@@ -79,11 +79,11 @@
          var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
          chart.draw(data, options);
        
-       
      }
    </script>
 </head>
 <body>
+<c:forEach items="${list}" var="list">
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
 	<jsp:include page="/WEB-INF/template/Top.jsp"/>
@@ -93,7 +93,6 @@
       <jsp:include page="/WEB-INF/template/Side.jsp"/>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
               <div class="card card-statistics">
@@ -105,7 +104,7 @@
                     <div class="float-right">
                       <p class="mb-0 text-right">병원 수</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">2089</h3>
+                        <h3 class="font-weight-medium text-right mb-0">${list.A}</h3>
                       </div>
                     </div>
                   </div>
@@ -125,7 +124,7 @@
                     <div class="float-right">
                       <p class="mb-0 text-right">약국 수</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">3455</h3>
+                        <h3 class="font-weight-medium text-right mb-0">${list.B}</h3>
                       </div>
                     </div>
                   </div>
@@ -145,7 +144,7 @@
                     <div class="float-right">
                       <p class="mb-0 text-right">일반사용자 수</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">5693</h3>
+                        <h3 class="font-weight-medium text-right mb-0">${list.C}</h3>
                       </div>
                     </div>
                   </div>
@@ -165,7 +164,7 @@
                     <div class="float-right">
                       <p class="mb-0 text-right">병원제휴 수</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">246</h3>
+                        <h3 class="font-weight-medium text-right mb-0">${list.D}</h3>
                       </div>
                     </div>
                   </div>
@@ -179,28 +178,27 @@
           
           <!-- 차트1 -->
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-lg-6 grid-margin stretch-card">
               <!--weather card-->
               <div class="card">
                 <div class="card-body">
-					<div id="piechart_3d" style="height: 500px;"></div>
+					<div id="piechart_3d" style="height: 580px;"></div>
                 </div>
               </div>
+             
               <!--weather card ends-->
+            </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+				<div class="card">
+                <div class="card-body">
+					<div id="chart_div" style="height: 580px;"></div>
+                </div>
+              </div> 
             </div>
           </div>
           
           <!-- 차트2 -->
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-					<div id="chart_div" style="height: 500px;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-  		</div>
+
 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -212,6 +210,6 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+</c:forEach>
 </body>
 </html>

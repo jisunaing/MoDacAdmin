@@ -15,6 +15,7 @@
 	
 	<!-- DI적용 -->
 	<context:annotation-config/>
+<!-- aspectJ bean태그 복사 configurable spring	<context:spring-configured/> -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- default: 이미지파일은 webapp > resources > images폴더 -->
