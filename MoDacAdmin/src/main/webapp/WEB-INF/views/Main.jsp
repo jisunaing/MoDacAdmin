@@ -178,23 +178,25 @@
           
           <!-- 차트1 -->
           <div class="row">
-            <div class="col-lg-6 grid-margin stretch-card">
+          
+          	<div class="col-lg-6 grid-margin stretch-card">
               <!--weather card-->
               <div class="card">
                 <div class="card-body">
 					<div id="piechart_3d" style="height: 580px;"></div>
                 </div>
               </div>
-             
               <!--weather card ends-->
             </div>
+
             <div class="col-lg-6 grid-margin stretch-card">
 				<div class="card">
                 <div class="card-body">
-					<div id="chart_div" style="height: 580px;"></div>
+					<div id="chart_div" style="height: 580px;margin-left: -200px"></div>
                 </div>
               </div> 
             </div>
+
           </div>
           
           <!-- 차트2 -->

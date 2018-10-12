@@ -171,8 +171,9 @@
               </div>
             </div>
           </a>
-          <a class="dropdown-item mt-2">
-            Manage Accounts
+<!--           <a class="dropdown-item mt-2" href="backend/member/addAccount.jsp"> -->
+          <a class="dropdown-item mt-2" href="Register.do">
+            Add Accounts
           </a>
           <a class="dropdown-item">
             Change Password
@@ -190,4 +191,5 @@
       <span class="mdi mdi-menu"></span>
     </button>	
   </div>
+  
 </nav>

@@ -101,10 +101,10 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
-  <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+  <script src="<c:url value='vendors/js/vendor.bundle.base.js'/>"></script>
+  <script src="<c:url value='vendors/js/vendor.bundle.addons.js'/>"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/misc.js"></script>
+  <script src="<c:url value='js/off-canvas.js'/>"></script>
+  <script src="<c:url value='js/misc.js'/>"></script>
   <!-- endinject -->

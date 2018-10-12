@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class LoginoutController {
-
+public class MemberController {
 	// 로그인페이지
-	@RequestMapping("AdminLogin.do")
-	public String login() throws Exception {
-		return "loginout/Login";
+	@RequestMapping("Register.do")
+	public String register() throws Exception {
+		return "member/Register";
 	} // Login
 } // controller
