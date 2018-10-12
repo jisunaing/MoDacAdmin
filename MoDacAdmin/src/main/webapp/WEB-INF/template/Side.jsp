@@ -19,7 +19,7 @@
             <img src="<c:url value='images/faces/conn.jpg'/>" alt="profile image">
           </div>
           <div class="text-wrapper">
-            <p class="profile-name">JISUN</p>
+            <p class="profile-name"><%=session.getAttribute("MID") != null? session.getAttribute("MID"): ""%></p>
             <div>
               <small class="designation text-muted">Manager</small>
               <span class="status-indicator online"></span>
@@ -47,9 +47,6 @@
           <li class="nav-item">
           	건강상태
           </li>
-          <li class="nav-item">
-          	자가진단
-          </li>
         </ul>
       </div>
     </li>
@@ -61,14 +58,14 @@
       </a>
       <div class="collapse" id="ui-partner">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-          	제휴신청
+         <li class="nav-item">
+          	<a href="<c:url value='PartnersRequest.do'/>">제휴신청</a>
           </li>
           <li class="nav-item">
-			탈퇴신청          
+			<a href="<c:url value='WithdrawalRequest.do'/>">탈퇴신청</a>
           </li>
           <li class="nav-item">
-          	제휴회원목록
+          	<a href="<c:url value='PartnerList.do'/>">제휴회원 목록</a>
           </li>
         </ul>
       </div>

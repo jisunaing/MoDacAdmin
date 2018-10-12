@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<%
+	System.out.println("mid:"+session.getAttribute("MID"));
+	if(session.getAttribute("MID") == null) { // mid가 널
+		// 여기서 프론트엔드로 보내기
+		out.println("<script>");
+		out.println("alert('로그인 후 이용하세요 - 프론트엔드로 이동합니다');");
+		out.println("location.href='"+request.getContextPath()+"/AdminLogin.do';");
+		out.println("</script>");
+	} // if
+%>
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="<c:url value='/index.do'/>">
@@ -28,7 +36,8 @@
          <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
      </li>
      <li class="nav-item">
-       <a href="<c:url value='/Test.do'/>" class="nav-link">
+<%--        <a href="<c:url value='/Test.do'/>" class="nav-link"> --%>
+       <a href="<c:url value='/Test/Test.do'/>" class="nav-link">
           <i class="mdi mdi-file-document-box"></i>TestPage</a>
      </li>
    </ul>
@@ -145,7 +154,7 @@
      </li>
      <li class="nav-item dropdown d-none d-xl-inline-block">
        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-         <span class="profile-text">Hello, Jisun !</span>
+         <span class="profile-text">Hello, <%=session.getAttribute("MID") != null? session.getAttribute("MID"): "" %> !</span>
          <img class="img-xs rounded-circle" src="<c:url value='images/faces/conn.jpg'/>" alt="Profile image">
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -171,7 +180,7 @@
           <a class="dropdown-item">
             Check Inbox
           </a>
-          <a class="dropdown-item">
+          <a class="dropdown-item" href="backend/loginout/Logout.jsp"> 
             Sign Out
           </a>
         </div>
@@ -179,6 +188,6 @@
     </ul>
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="mdi mdi-menu"></span>
-    </button>
+    </button>	
   </div>
 </nav>
