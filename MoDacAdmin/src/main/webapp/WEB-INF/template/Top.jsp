@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	System.out.println("mid:"+session.getAttribute("MID"));
-	if(session.getAttribute("MID") == null) { // mid가 널
+	System.out.println("mid:"+session.getAttribute("mid"));
+	if(session.getAttribute("mid") == null) { // mid가 널
 		// 여기서 프론트엔드로 보내기
 		out.println("<script>");
-		out.println("alert('로그인 후 이용하세요 - 프론트엔드로 이동합니다');");
+		out.println("alert('로그인 후 이용하세요');");
 		out.println("location.href='"+request.getContextPath()+"/AdminLogin.do';");
 		out.println("</script>");
 	} // if
@@ -29,7 +29,7 @@
      </li>
      <li class="nav-item active">
        <a href="#" class="nav-link">
-         <i class="mdi mdi-elevation-rise"></i>Reports</a>
+         <i class="mdi mdi-elevation-rise"></i>Reports</a>	
      </li>
      <li class="nav-item">
        <a href="#" class="nav-link">
@@ -154,7 +154,7 @@
      </li>
      <li class="nav-item dropdown d-none d-xl-inline-block">
        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-         <span class="profile-text">Hello, <%=session.getAttribute("MID") != null? session.getAttribute("MID"): "" %> !</span>
+         <span class="profile-text">Hello, <%=session.getAttribute("mid") != null? session.getAttribute("mid"): "" %> !</span>
          <img class="img-xs rounded-circle" src="<c:url value='images/faces/conn.jpg'/>" alt="Profile image">
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -172,7 +172,7 @@
             </div>
           </a>
 <!--           <a class="dropdown-item mt-2" href="backend/member/addAccount.jsp"> -->
-          <a class="dropdown-item mt-2" href="Register.do">
+          <a class="dropdown-item mt-2" href="RegisterForm.do">
             Add Accounts
           </a>
           <a class="dropdown-item">
@@ -181,7 +181,7 @@
           <a class="dropdown-item">
             Check Inbox
           </a>
-          <a class="dropdown-item" href="backend/loginout/Logout.jsp"> 
+          <a class="dropdown-item" href="Logout.do"> 
             Sign Out
           </a>
         </div>

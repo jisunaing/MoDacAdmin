@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.modu.modacadmin.service.ManagersDto" alias="managersDto"/>
 		<typeAlias type="com.modu.modacadmin.service.TestDto" alias="testDto"/>
+		<typeAlias type="com.modu.modacadmin.service.NoticeDto" alias="noticeDto"/>
 	</typeAliases>
 	<!-- DTO등록 할 때 복사해서 쓰면 됨 별칭은 xxDto로 함 -->
 	<!--  
@@ -21,8 +22,9 @@
 		매퍼파일(sql쿼리와 자바빈 매핑) 정보 설정
 	-->
 	<mappers>
-		<mapper resource="mybatis/Managers.xml" />
+		<mapper resource="mybatis/Managers.xml"/>
 		<mapper resource="mybatis/Test.xml" />
 		<mapper resource="mybatis/Chart.xml"/>
+		<mapper resource="mybatis/Notice.xml"/>
 	</mappers>
 </configuration>

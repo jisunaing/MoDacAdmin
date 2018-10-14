@@ -6,9 +6,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.modu.modacadmin.service.ManagersDto;
 import com.modu.modacadmin.service.ManagersService;
 
-@Service("managerService")
+@Service("managersService")
 public class ManagersServiceImpl implements ManagersService{
 	
 	@Resource(name="managersDao")
@@ -18,4 +19,9 @@ public class ManagersServiceImpl implements ManagersService{
 	public boolean isManager(Map<String, String> map) {
 		return dao.isManager(map);
 	} // isManager
+	
+	@Override
+	public int insert(ManagersDto dto) {
+		return dao.insert(dto);
+	}
 } // class

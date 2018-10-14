@@ -19,7 +19,7 @@
             <img src="<c:url value='images/faces/conn.jpg'/>" alt="profile image">
           </div>
           <div class="text-wrapper">
-            <p class="profile-name"><%=session.getAttribute("MID") != null? session.getAttribute("MID"): ""%></p>
+            <p class="profile-name"><%=session.getAttribute("mid") != null? session.getAttribute("mid"): ""%></p>
             <div>
               <small class="designation text-muted">Manager</small>
               <span class="status-indicator online"></span>
@@ -105,7 +105,7 @@
       </div>
     </li>
 	<li class="nav-item">
-      <a class="nav-link" href="pages/forms/basic_elements.html">
+      <a class="nav-link" href="NoticeList.do">
         <i class="menu-icon fa fa-bell-o"></i>
         <span class="menu-title">공지사항</span>
       </a>

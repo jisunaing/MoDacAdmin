@@ -195,7 +195,7 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.1-atlassian-hosted</version>
 		</dependency>
-		
+
 
 		<!-- json라이브러리 -->
 		<dependency>

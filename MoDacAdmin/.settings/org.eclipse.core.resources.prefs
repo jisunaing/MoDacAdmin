@@ -1,12 +1,11 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/modu/modacadmin/service/TestService.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/service/impl/ManagersDao.java=UTF-8
+encoding//src/main/java/com/modu/modacadmin/service/impl/PagingUtil.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/web/AdministrationController.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/web/ChartController.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/web/CommonManagingController.java=UTF-8
+encoding//src/main/java/com/modu/modacadmin/web/NoticeController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/template=UTF-8
 encoding//src/main/webapp/WEB-INF/template/layouts.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/Test.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/loginout/LoginProcess.jsp=UTF-8
-encoding//src/main/webapp/backend=UTF-8
-encoding//src/main/webapp/backend/loginout/LoginProcess.jsp=UTF-8

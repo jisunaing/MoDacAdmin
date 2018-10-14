@@ -31,11 +31,14 @@
         <div class="col-lg-4 mx-auto">
           <h2 class="text-center mb-4">Register</h2>
           <div class="auto-form-wrapper">
+<!-- 
             <form action="backend/member/AddAccount.jsp">
+-->
+            <form action="<c:url value='Register.do'/>" method="post" >
               <div class="form-group">
                 <div class="input-group">
                 
-                  <input type="text" class="form-control" name="newuser" placeholder="<%=session.getAttribute("registerSuccess") != null? "더 추가할 ID를 입력해주세요": "ID"%>">
+                  <input type="text" class="form-control" name="mid" placeholder="<%=session.getAttribute("registerSuccess") != null? "더 추가할 ID를 입력해주세요": "ID"%>">
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i class="mdi mdi-check-circle-outline"></i>
@@ -45,7 +48,7 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="text" class="form-control" name="newname" placeholder="Name">
+                  <input type="text" class="form-control" name="mname" placeholder="Name">
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i class="mdi mdi-check-circle-outline"></i>
@@ -55,7 +58,7 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="password" class="form-control" name="newpass" placeholder="Password">
+                  <input type="password" class="form-control" name="mpwd" placeholder="Password">
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i class="mdi mdi-check-circle-outline"></i>
@@ -85,7 +88,10 @@
               </div>
               <div class="text-block text-center my-3">
                 <span class="text-small font-weight-semibold">관리자페이지 메인으로 돌아가기</span>
+                <!--  
                 <a href="main.do" class="text-black text-small">go!</a>
+                -->
+                <a href="index.do" class="text-black text-small">go!</a>
               </div>
               <div class="text-block text-center my-3">
                 <span class="text-large font-weight-semibold" style="color: orange"><%= session.getAttribute("registerSuccess") != null? session.getAttribute("registerSuccess"): "" %></span>

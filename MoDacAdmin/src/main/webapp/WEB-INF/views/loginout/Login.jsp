@@ -46,11 +46,14 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
             <!-- form시작 -->
+            <!-- 
               <form method="post" action="backend/loginout/LoginProcess.jsp">
+            -->
+              <form method="post" action="LoginProcess.do">
                 <div class="form-group">
                   <label class="label">아이디</label>
                   <div class="input-group">
-                    <input type="text" name="user" class="form-control" placeholder="user">
+                    <input type="text" name="mid" class="form-control" placeholder="user">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -61,7 +64,7 @@
                 <div class="form-group">
                   <label class="label">비밀번호</label>
                   <div class="input-group">
-                    <input type="password" name="pass" class="form-control" placeholder="*********">
+                    <input type="password" name="mpwd" class="form-control" placeholder="*********">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -73,7 +76,8 @@
                   <button class="btn btn-primary submit-btn btn-block">Login</button>
                 </div>
                 <div class="text-block text-center my-3">
-                  <span class="text-small font-weight-semibold" style="color: red"><%=request.getParameter("ERROR") != null? request.getParameter("ERROR"): "" %></span>
+                  <span class="text-small font-weight-semibold" style="font-size:1.5em ;color: orange"><%=session.getAttribute("ERROR") != null? session.getAttribute("ERROR"): "" %></span>
+                  <br/>
                   <span class="text-small font-weight-semibold">관리자만 사용 가능한 페이지입니다</span>
                   <a href="http://localhost:8080/MoDacProject/" class="text-black text-small"><br/>모닥으로 돌아가기</a>
                 </div>
