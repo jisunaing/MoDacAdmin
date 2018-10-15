@@ -44,6 +44,9 @@ th {
 						<a href="<c:url value='NoticeList.do'/>">
 							<button type="button" class="btn btn-info btn-fw">공지목록</button>
 						</a>
+						<a href="<c:url value='NoticeDelete.do'/>">
+							<button type="button" class="btn btn-info btn-fw">삭제하기</button>
+						</a>
 					</div>
 				</div>
 				<!-- 추가용 버튼  끝-->

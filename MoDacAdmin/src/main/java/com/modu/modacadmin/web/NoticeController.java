@@ -76,6 +76,7 @@ public class NoticeController {
 		return "forward:NoticeList.do";
 	}
 	
+	
 	// notice list
 	@RequestMapping("NoticeEdit.do")
 	public String noticeEdit(NoticeDto dto) throws Exception {
