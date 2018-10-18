@@ -23,7 +23,7 @@
 <!-- endinject -->
 <link rel="shortcut icon" href="<c:url value='images/favicon.png'/>" />
 </head>
-
+<body style="font-family: monospace;">
 <div class="container-scroller">
   <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
     <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
@@ -87,7 +87,7 @@
                 <button class="btn btn-primary submit-btn btn-block">Register</button>
               </div>
               <div class="text-block text-center my-3">
-                <span class="text-small font-weight-semibold">관리자페이지 메인으로 돌아가기</span>
+                <span class="text-small font-weight-semibold" style="font-family: monospace;">관리자페이지 메인으로 돌아가기</span>
                 <!--  
                 <a href="main.do" class="text-black text-small">go!</a>
                 -->
@@ -109,6 +109,7 @@
 <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+</body>
 <!-- plugins:js -->
   <script src="<c:url value='vendors/js/vendor.bundle.base.js'/>"></script>
   <script src="<c:url value='vendors/js/vendor.bundle.addons.js'/>"></script>
