@@ -32,11 +32,25 @@
 <script src="<c:url value='js/off-canvas.js'/>"></script>
 <script src="<c:url value='js/misc.js'/>"></script>
 <!-- endinject -->
-
+<style>
+	h1, span, a, li, pt, table, button, th, h2, h3, h4, h5, h6, body{
+		font-family: monospace
+	}
+	.card-title {
+		font-family: monospace;
+	}
+	.text-small	{
+		font-family: monospace;
+	}
+</style>
+<script>
+$(function(){
+});
+</script>
 </head>
 <body>
-	<div class="container-scroller">
-		<!-- partial:partials/_navbar.html -->
+	<div class="container-scroller" style="font-family: monospace">
+		<!-- al:partials/_navbar.html -->
 		<!--탑메뉴들어감-->
 		<tiles:insertAttribute name="Top"/>
 		

@@ -7,6 +7,15 @@
 	.nav-item{
 		padding-top: 5px;
 		padding-bottom: 5px;
+		font-family: monospace;
+		font-weight: bold;
+		font-size: 1.2em;
+		margin-bottom: 10px;
+	}
+	.nav-item a {
+		text-decoration: none !important ;
+		font-size: 0.8em !important ;
+		color:graytext;
 	}
 </style>
 <!-- partial:partials/_sidebar.html -->
@@ -59,7 +68,7 @@
       <div class="collapse" id="ui-partner">
         <ul class="nav flex-column sub-menu">
          <li class="nav-item">
-          	<a href="<c:url value='PartnersRequest.do'/>">제휴신청</a>
+          	<a class="decnon"href="<c:url value='PartnersRequest.do'/>">제휴신청</a>
           </li>
           <li class="nav-item">
 			<a href="<c:url value='WithdrawalRequest.do'/>">탈퇴신청</a>
@@ -79,7 +88,7 @@
       <div class="collapse" id="ui-phhos">
         <ul class="nav flex-column sub-menu">
         	<li class="nav-item">
-				<a href="<c:url value='CommonPharmacy.do'/>">약국정보관리</a>
+				<a href="<c:url value='CommonPharmacy.do'/>" >약국정보관리</a>
 			</li>
 			<li class="nav-item">
 				<a href="<c:url value='CommonHospital.do'/>">병원정보관리</a>

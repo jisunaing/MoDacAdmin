@@ -11,6 +11,8 @@
 		out.println("</script>");
 	} // if
 %>
+<style>
+</style>
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="<c:url value='/index.do'/>">
@@ -22,19 +24,20 @@
  </div>
  <div class="navbar-menu-wrapper d-flex align-items-center">
    <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-     <li class="nav-item">
-       <a href="#" class="nav-link">Schedule
-         <span class="badge badge-primary ml-1">New</span>
-       </a>
-     </li>
      <li class="nav-item active">
-       <a href="#" class="nav-link">
+       <a href="<c:url value='main.do'/>" class="nav-link">
          <i class="mdi mdi-elevation-rise"></i>Reports</a>	
+     </li>
+     <li class="nav-item">
+       <a href="<c:url value='RegisterForm.do'/>" class="nav-link">
+			<i class="mdi mdi-account-multiple-plus"></i>Add Accounts
+<!--          <span class="badge badge-primary ml-1">New</span> -->
+       </a>
      </li>
      <li class="nav-item">
        <a href="#" class="nav-link">
          <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
-     </li>
+     </li>	
      <li class="nav-item">
 <%--        <a href="<c:url value='/Test.do'/>" class="nav-link"> --%>
        <a href="<c:url value='/Test/Test.do'/>" class="nav-link">
@@ -170,10 +173,6 @@
                 <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
               </div>
             </div>
-          </a>
-<!--           <a class="dropdown-item mt-2" href="backend/member/addAccount.jsp"> -->
-          <a class="dropdown-item mt-2" href="RegisterForm.do">
-            Add Accounts
           </a>
           <a class="dropdown-item">
             Change Password

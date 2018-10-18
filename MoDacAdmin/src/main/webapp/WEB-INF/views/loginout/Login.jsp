@@ -38,7 +38,6 @@
 
 <link rel="shortcut icon" href="<c:url value='images/favicon.png'/>" />
 
-
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
       <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">

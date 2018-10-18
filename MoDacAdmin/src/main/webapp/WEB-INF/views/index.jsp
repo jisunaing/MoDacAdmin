@@ -12,7 +12,7 @@
 <title>관리자페이지</title>
 </head>
 <body>
-<c:redirect url="main.do"></c:redirect>
+	<c:redirect url="main.do"></c:redirect>
 </body>
 </html>
 <!-- 
