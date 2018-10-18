@@ -38,7 +38,7 @@ public class PagingUtil {
 			
 		if(intTemp <= totalPage){
 
-			pagingStr+="<a href='"+page+"nowPage="+intTemp+"'>▶</a>&nbsp;<a href='"+page+"nowPage="+totalPage+"'>▶▶</a>"; 
+			pagingStr+="<a href='"+page+"nowPage="+intTemp+"'><span style='Color:gray'>▶</span></a>&nbsp;<a href='"+page+"nowPage="+totalPage+"'><span style='Color:gray'>▶▶</span></a>"; 
 
 				   
 		}
@@ -47,7 +47,8 @@ public class PagingUtil {
 	}
 	public static String pagingBootStrapStyle(int totalRecordCount,int pageSize,int blockPage,int nowPage,String page){
 		
-		String pagingStr="<nav class='text-center'><ul class=\"pagination\" >";
+//		String pagingStr="<nav class='text-center'><ul class=\"pagination\" >";
+		String pagingStr="<div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">";
 		
 		//1.전체 페이지 구하기
 		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
@@ -77,11 +78,11 @@ public class PagingUtil {
 		while(blockCount <= blockPage && intTemp <= totalPage){  // 페이지 오버 를 체크
 				//현재 페이지를 의미함
 			if(intTemp == nowPage){  
-				pagingStr+="<li><a href='#'><span style='Color:red'>"+intTemp+"&nbsp;&nbsp;&nbsp;</span></a></li>";
+				pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='#'><span style='Color:red'>"+intTemp+"</a>	</span></button>";
 			}
 		     else
-		    	 pagingStr+="<li><a href='"+page+"nowPage="+intTemp+"'>"+intTemp+"&nbsp;&nbsp;&nbsp;</a></li>";
-		       
+				pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='"+page+"nowPage="+intTemp+"'><span style='Color:gray'>"+intTemp+"</a></span></button>";
+
 			intTemp = intTemp + 1;
 			blockCount = blockCount + 1;
 		
@@ -92,7 +93,7 @@ public class PagingUtil {
 		if(intTemp <= totalPage){
 			pagingStr+="<li>\r\n" + 
 					"<a href='"+page+"nowPage="+intTemp+"'>\r\n" + 
-					"<span >&rsaquo;</span>\r\n" + 
+					"<span>&rsaquo;</span>\r\n" + 
 					"</a>\r\n" + 
 					"</li>\r\n" + 
 					"<li>\r\n" + 
@@ -102,7 +103,7 @@ public class PagingUtil {
 					"</li>";
 							   
 		}
-		pagingStr+="</ul></nav>";
+		pagingStr+="</div>";
 		return pagingStr;
 	}
 	
