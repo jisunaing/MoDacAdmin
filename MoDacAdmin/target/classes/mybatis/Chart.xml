@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.MoDac_myBatis.Chart.xml">
-	<!-- 마이바티스는 resultMap사용 시 column속성 필수 -->
-	<!-- type속성은 configuration.xml에 등록한 자바빈의 별칭임 -->	
-	<!-- 쿼리 작성 -->
+   <!-- 마이바티스는 resultMap사용 시 column속성 필수 -->
+   <!-- type속성은 configuration.xml에 등록한 자바빈의 별칭임 -->   
+   <!-- 쿼리 작성 -->
 
-	
-	<!-- 차트 가져오기 -->
-	<select id="mainChartTableRecord" resultType="java.util.Map">
-	SELECT 
-	(SELECT COUNT(*) FROM hospital)A,
-	(SELECT COUNT(*) FROM pharmacy)B, 
-	(SELECT COUNT(*) FROM genmember)C,
-	(SELECT COUNT(*) FROM PARTNERS)D
-	FROM DUAL
-	</select>
-	
-	<select id="mainChartAge" resultType="java.lang.String">
-	SELECT BIRTHDATE FROM GENMEMBER
-	</select>
-	
-	<select id="mainChartday" resultType="java.lang.String">
-	SELECT RESDATE FROM RESERVATION
-	</select>
-	
-	
-	
-	
+   
+   <!-- 차트 가져오기 -->
+   <select id="mainChartTableRecord" resultType="java.util.Map">
+   SELECT 
+   (SELECT COUNT(*) FROM hospital)A,
+   (SELECT COUNT(*) FROM pharmacy)B, 
+   (SELECT COUNT(*) FROM genmember)C,
+   (SELECT COUNT(*) FROM PARTNERS)D
+   FROM DUAL
+   </select>
+   <!-- 접수, 예약 수 얻어오기 -->
+   <select id="reservationReception" resultType="java.util.Map">
+   SELECT 
+   (SELECT COUNT(*) FROM RESERVATION)RESERVATION,
+   (SELECT COUNT(*) FROM RECEPTION)RECEPTION
+   FROM DUAL
+   </select>
+   <!-- 생년월일 얻어오기 -->   
+   <select id="mainChartAge" resultType="java.lang.String">
+   SELECT BIRTHDATE FROM GENMEMBER
+   </select>
+   <!-- 예약 날짜 얻어오기 -->
+   <select id="mainChartday" resultType="java.lang.String">
+   SELECT RESDATE FROM RESERVATION
+   </select>
+   
+   
+   
+   
 </mapper>

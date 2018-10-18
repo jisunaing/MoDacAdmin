@@ -13,24 +13,29 @@ import com.modu.modacadmin.service.ChartService;
 
 @Repository
 public class ChartServiceDao implements ChartService {
-	
-	@Resource(name="template")
-	private SqlSessionTemplate template;
+   
+   @Resource(name="template")
+   private SqlSessionTemplate template;
 
-	@Override
-	public List<Map> mainChartTableRecord() {
-		return template.selectList("mainChartTableRecord");
-	}
+   @Override
+   public List<Map> mainChartTableRecord() {
+      return template.selectList("mainChartTableRecord");
+   }
 
-	@Override
-	public List<String> mainChartAge() {
-		return template.selectList("mainChartAge");
-	}
+   @Override
+   public List<String> mainChartAge() {
+      return template.selectList("mainChartAge");
+   }
 
-	@Override
-	public List<String> mainChartday() {
-		return template.selectList("mainChartday");
-	}
-	
-	
+   @Override
+   public List<String> mainChartday() {
+      return template.selectList("mainChartday");
+   }
+
+   @Override
+   public List<Map> reservationReception() {
+      return template.selectList("reservationReception");
+   }
+   
+   
 }

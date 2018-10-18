@@ -14,22 +14,27 @@ import com.modu.modacadmin.service.ChartService;
 @Service("chartService")
 public class ChartServiceImpl implements ChartService {
 
-	@Resource(name="chartServiceDao")
-	private ChartServiceDao dao;
-	
-	@Override
-	public List<Map> mainChartTableRecord() {
-		return dao.mainChartTableRecord();
-	}
+   @Resource(name="chartServiceDao")
+   private ChartServiceDao dao;
+   
+   @Override
+   public List<Map> mainChartTableRecord() {
+      return dao.mainChartTableRecord();
+   }
 
-	@Override
-	public List<String> mainChartAge() {
-		return dao.mainChartAge();
-	}
+   @Override
+   public List<String> mainChartAge() {
+      return dao.mainChartAge();
+   }
 
-	@Override
-	public List<String> mainChartday() {
-		return dao.mainChartday();
-	}
+   @Override
+   public List<String> mainChartday() {
+      return dao.mainChartday();
+   }
+
+   @Override
+   public List<Map> reservationReception() {
+      return dao.reservationReception();
+   }
 
 }

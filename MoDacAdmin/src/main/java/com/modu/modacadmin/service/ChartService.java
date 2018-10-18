@@ -5,10 +5,12 @@ import java.util.Map;
 
 public interface ChartService {
 
-	List<Map> mainChartTableRecord();
+   List<Map> mainChartTableRecord();
 
-	List<String> mainChartAge();
+   List<String> mainChartAge();
 
-	List<String> mainChartday();
+   List<String> mainChartday();
+
+   List<Map> reservationReception();
 
 }
