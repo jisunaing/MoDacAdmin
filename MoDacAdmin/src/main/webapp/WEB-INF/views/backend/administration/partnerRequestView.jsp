@@ -3,9 +3,12 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="<c:url value='/Bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/Bootstrap/js/bootstrap.min.js'/>"></script>
+<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.2.4/email.min.js"></script>
+
 
 
 <style>
@@ -67,6 +70,11 @@ input{
 	transition: border-color .25s ease, box-shadow .25s ease;
 }
 
+textarea{
+
+text-align: left;
+}
+
 
 
 .sp{
@@ -95,46 +103,51 @@ input{
 					class="col-sm-12" />
 			</div>
 
-			<form action="#" method="post">
-
+			<form action="#" method="post" id="parnterRequestSubmit">
+			<input type="hidden" name="hosno" id="hosno" value="${HOSNO}">
+			<input type="hidden" name="pid" id="pid" value="${PID}">
 
 
 				<div class="form-group">
 					<div class="col-sm-6">
 						<div class="col-sm-8">
-							<span class="sp">병원 명</span> <input type="text"
-								class="form-control" name="id" id="id" disabled>
+							<span class="sp">병원 이름</span>
+							<input type="text" class="form-control" name="hosname" id="hosname" value="${HOSNAME}" disabled>
 						</div>
+					</div>
+				</div>
+				
+				<div class="form-group"> 
+					<div class="col-sm-12">
+					
+							<div class="col-sm-3" >							
+								<span class="sp">담당자 이름</span>
+								 <input type="text"	class="form-control" name="hosmanager" id="hosmanager" value="${HOSMANAGER}" disabled>
+							</div> 
+							<div class="col-sm-3" >	 
+								  <span class="sp">담당자 연락처</span>
+								 <input type="text"	class="form-control" name="pphone" id="pphone" value="${PPHONE}" disabled>												
+							</div>													
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-sm-4 col-sm-pull-1">
-						<div class="col-sm-12">
-							<span class="sp">담당자 연락처</span> <input type="text"
-								class="form-control" name="id" id="id" disabled>
-						</div>
-					</div>
-				</div>
+				
 
 				<div class="form-group">
 					<div class="col-sm-12">
 						<div class="col-sm-9">
-							<span class="sp">병원 주소</span> <input type="text"
-								class="form-control" name="id" id="id" disabled>
+							<span class="sp">병원 주소</span>
+							<input type="text" class="form-control" name="hosaddr" id="hosaddr" value="${HOSADDR}" disabled>
 						</div>
 					</div>
 				</div>
-
-
-
 
 
 				<div class="form-group">
 					<div class="col-sm-6">
 						<div class="col-sm-12">
-							<span class="sp">사업자 번호</span> <input type="text"
-								class="form-control" name="id" id="id" disabled>
+							<span class="sp">사업자 번호</span> 
+							<input type="text" class="form-control" name="businessnum" id="businessnum" value="${BUSINESSNUM}" disabled>
 						</div>
 					</div>
 				</div>
@@ -144,8 +157,7 @@ input{
 					<div class="col-sm-12">
 						<div class="col-sm-12">
 							<span class="sp">요청 사항</span>
-							<textarea rows="10" class="form-control" id="greeting"
-								name="greeting"></textarea>
+							<textarea rows="10" class="form-control" id="request" name="request"><c:if test="${!empty REQUEST}">${REQUEST}</c:if></textarea>
 						</div>
 					</div>
 				</div>
@@ -154,7 +166,7 @@ input{
  				<div class="form-group">
 					<div class="col-sm-12">
 					<div style="text-align: center;">										
-							<button style="margin-top: 20px; margin-right: 10px; " type="button"	class="btn btn-primary" id="btnOK">제휴 수락</button>
+							<button style="margin-top: 20px; margin-right: 10px; " type="button" class="btn btn-primary" id="btnOK">제휴 수락</button>
 							<button style="margin-top: 20px;" type="button"	class="btn btn-danger" id="btnNO">제휴 거절</button>
 						</div>
 					</div>
@@ -180,12 +192,37 @@ input{
 		$("#btnOK").click(function() {
 			
 			alert('제휴 회원님에게 승인 메일이 발송 되었습니다');
+
+			$('#parnterRequestSubmit').attr("action","<c:url value='PartnerAccept.do'/>")
+			
+			var template_params = {
+			   "send_email":"${PEMAIL}",
+			   "pid": "${PID}", 
+			   "hosname":"${HOSNAME}",
+			   "hosmanager":"${HOSMANAGER}",
+			   "pphone":"${PPHONE}",
+			   "hosaddr":"${HOSADDR}"
+			}///var
+			
+			var service_id = "default_service";
+			var template_id = "join";
+			emailjs.init("user_3wBofPIGcH4YvLkUkGRgV");
+			emailjs.send(service_id,template_id,template_params);
+			
+			
+			
+			$('#parnterRequestSubmit').submit();
+		
 			
 		});
 		
 		$("#btnNO").click(function() {
 			
-			alert('제휴 회원님에게 승인거절 메일이 발송 되었습니다');
+			alert('해당 신청에 대한 거절이 처리 되었습니다.');
+			
+			$('#parnterRequestSubmit').attr("action","<c:url value='PartnerAcceptNo.do'/>")
+			
+			$('#parnterRequestSubmit').submit();
 			
 		});
 		

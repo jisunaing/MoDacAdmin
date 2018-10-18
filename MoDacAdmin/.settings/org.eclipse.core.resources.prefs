@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/modu/modacadmin/service/TestService.java=UTF-8
+encoding//src/main/java/com/modu/modacadmin/service/UploadCommand.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/service/impl/ManagersDao.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/service/impl/PagingUtil.java=UTF-8
 encoding//src/main/java/com/modu/modacadmin/web/AdministrationController.java=UTF-8

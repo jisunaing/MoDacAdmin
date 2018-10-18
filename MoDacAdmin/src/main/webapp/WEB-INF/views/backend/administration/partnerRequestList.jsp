@@ -10,87 +10,84 @@
 <script src="<c:url value='/Bootstrap/js/bootstrap.min.js'/>"></script>
 
 <style>
-
-#form-box {
-	background: white; 
-	padding: 20px;
-	width: 1100px;
-	height: 950px;	
-	margin: 50px auto; 
-	border-radius: 20px; 
-	box-shadow: 0 4px 10px 4px rgba(9,35,47, .50);		
-	text-align: center;
-	padding-left: 100px;
+	.form-group {
+		margin-right: 10px;	
+	}
+	.row {
+		margin-bottom : 10px;
+	}
+	.card-title {
+		font-size: 1.8em;
 	}
 	
-	#h1id{
-	
-	padding-right: 100px;
-	
-	}
 
-
+	
 </style>
-
-<div id="form-box">
-
-	<div class="content-wrapper">
-
-		<div class="container">
-			<div class="page-header">
-				<h1 id="h1id">
-					제휴 신청 <small> 목록 페이지</small>
+	<div class="row">
+		<div class="col-sm-12 grid-margin stretch-card">
+		    <div class="card">
+		      <div class="card-body">
+		        <h4 class="card-title"><strong>제휴신청 목록</strong></h4>
+		        <div class="table-responsive">
+		        <table class="table table-hover table-bordered text-center">
+						<tr>
+							<th>신청 번호</th>
+							<th >병원 명</th>  
+							<th >담당자 이름</th>
+							<th >연락처</th>							
+							<th >병원 주소</th>
+						</tr>
+						
+						<c:if test="${empty requestScope.partner }" var="isEmpty">
+					<tr>
+						<td colspan="5">현재 들어온 신청이 없습니다</td>
+					</tr>
+				</c:if>
+				<c:if test="${not isEmpty}">
+					<c:forEach var="partners" items="${partner}" varStatus="loop">
 					
-				</h1>
-				<br/>
-			</div>
-			<div class="row">
-
-				<div>
-					<table class="table table-hover table-bordered text-center">
-						<tr>
-
-							<th class="col-md-1 text-center">신청 번호</th>
-							<th class="col-md-2 text-center">병원 명</th>
-							<th class="col-md-1 text-center">담당자 이름</th>
-							<th class="col-md-1 text-center">연락처</th>
-							<th class="col-md-1 text-center">신청 날짜</th>
-							<th class="col-md-1 text-center">제휴 여부</th>
+					
+						<tr id="trid">
+							<td>${partners.HOSNO}</td>
+							<td>
+							 <a	href="<c:url value='PartnersRequestView.do?hosno=${partners.HOSNO}'/>">${partners.HOSNAME}</a>
+							</td>							
+							<td>${partners.HOSMANAGER}</td>
+							<td>${partners.PPHONE}</td>														
+							<td>${partners.HOSADDR}</td> 
+							
 						</tr>
-
-						<tr>
-							<td>1</td>
-							<td><a href="<c:url value='PartnersRequestView.do'/>">이바르게	치과</a></td>
-							<td>홍길동</td>
-							<td>010-1234-5678</td>
-							<td>2018-09-24</td>
-							<td>대기중</td>
-						</tr>
-
-						<tr>
-							<td>2</td>
-							<td>함소아 한의원</td>
-							<td>박길동</td>
-							<td>010-2222-3333</td>
-							<td>2018-09-24</td>
-							<td>거절</td>
-						</tr>
-
-						<tr>
-							<td>3</td>
-							<td>튼튼마디</td>
-							<td>오길동</td>
-							<td>010-5555-5555</td>
-							<td>2018-09-25</td>
-							<td>승인</td>
-						</tr>
-
-
+					</c:forEach>
+				</c:if>															
 					</table>
+		        </div>
+		      </div>
+	     <div class="card-body" style="text-align: center;">
+            <div>${pagingString}</div>
+         </div>
+	       </div>
+	    </div>
+	</div>
+
+	<!-- 검색용 UI -->
+	<div class="row">
+		<div class="col-lg-12">
+			<form class="form-inline" method="post"	action="<c:url value='PartnersRequest.do'/>">
+				<div class="form-group">
+					<select name="searchColumn" class="form-control">
+						<option value="hosname">병원 명</option>
+						<option value="h.hosno">신청 번호</option>
+					</select>
 				</div>
-
-			</div>
+				<div class="form-group">
+					<input type="text" name="searchWord" class="form-control" />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">검색</button>
+					<a href="<c:url value='PartnersRequest.do'/>"><button style="margin-left: 10px;" type="button" class="btn btn-danger">전체 목록</button></a>
+				</div>
+				
+			</form>
 		</div>
-
 	</div>
-	</div>
+<!-- 내용 끝 -->

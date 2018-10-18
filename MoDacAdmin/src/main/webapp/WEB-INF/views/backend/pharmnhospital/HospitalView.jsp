@@ -3,15 +3,13 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="<c:url value='/Bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/Bootstrap/js/bootstrap.min.js'/>"></script>
 
 <script>
-	var isDelete = function(){
+	var isDelete = function(hosno){
 		
 		if(confirm("정말로 삭제하시겠습니까?")) {
-			location.replace("<c:url value='HospitalDelete.do?no=1'/>");
+			location.replace("<c:url value='HospitalDelete.do?hosno="+hosno+"'/>");
 		}
 	};
 
@@ -33,7 +31,7 @@
 	}
 </style>
 	<div class="row">
-		<div class="col-lg-12 grid-margin stretch-card">
+		<div class="grid-margin stretch-card">
 		    <div class="card">
 		      <div class="card-body">
 		        <h2 class="card-title"><strong>병원 상세정보</strong></h2>
@@ -45,60 +43,60 @@
 		        <div class="table-responsive">
 		          <table class="table table-hover">
 		           <tr>
-					<th class="col-md-1 text-center">번호</th>
-					<td class="text-left">1</td>
+					<th class="text-center">번호</th>
+					<td class="text-left" colspan="6">${requestScope.record.hosno}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">병원명</th>
-						<td class="text-left">병원이름 입니다</td>
+						<th class="col-lg-1 text-center">병원명</th>
+						<td class="text-left" colspan="6">${requestScope.record.hosname}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">연락처</th>
-						<td class="text-left">010-1234-1234</td>
+						<th class="col-lg-1 text-center">연락처</th>
+						<td class="text-left" colspan="6">${requestScope.record.hosphone}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">주소</th>
-						<td class="text-left">주소가 들어갑니다 주소가 들어갑니다</td>
+						<th class="col-lg-1 text-center">주소</th>
+						<td class="text-left" colspan="6">${requestScope.record.hosaddr}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">진료과목</th>
-						<td class="text-left">내과, 외과, 정형외과, 소아청소년과, 내과, 외과, 정형외과, 소아청소년과, 내과, 외과, 정형외과, 소아청소년과, 내과, 외과, 정형외과, 소아청소년과 </td>
+						<th class="col-lg-1 text-center">진료과목</th>
+						<td class="text-left" colspan="6">${requestScope.subjects}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">진료요일</th>
-						<th class="text-left">[진료시간]</th>
+						<th class="col-lg-1 text-center">[진료요일]</th>
+						<th class="text-left" colspan="6">[진료시간]</th><th></th><th></th><th></th><th></th><th></th>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">월요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">월요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.mon}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">화요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">화요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.tue}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">수요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">수요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.wed}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">목요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">목요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.thu}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">금요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">금요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.fri}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">토요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">토요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.sat}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">일요일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">일요일</th>
+						<td class="text-left" colspan="6">${requestScope.record.sun}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 					<tr>
-						<th class="col-md-1 text-center">공휴일</th>
-						<td class="text-left">9:00 ~ 18:00</td>
+						<th class="col-lg-1 text-center">공휴일</th>
+						<td class="text-left" colspan="6">${requestScope.record.holiday}</td><td></td><td></td><td></td><td></td><td></td>
 					</tr>
 		          </table>
 		        </div>
@@ -110,10 +108,10 @@
 		<div class="col-lg-12">
 			<form class="form-inline">
 				<div class="form-group">
-					<a href="<c:url value='HospitalEdit.do?no=1'/>" id="btnEdit" class="btn btn-primary"> 수정 </a>
+					<a href="<c:url value='HospitalEdit.do?hosno=${requestScope.record.hosno}'/>" id="btnEdit" class="btn btn-primary"> 수정 </a>
 				</div>
 				<div class="form-group">
-					<a href="javascript:isDelete()" id="btnDelete" class="btn btn-primary"> 삭제 </a>
+					<a href="javascript:isDelete('${requestScope.record.hosno}')" id="btnDelete" class="btn btn-primary"> 삭제 </a>
 				</div>
 			</form>
 		</div>

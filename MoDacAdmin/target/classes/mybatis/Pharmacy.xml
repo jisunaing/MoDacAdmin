@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis/Pharmacy">
+	<!-- 마이바티스는 resultMap사용 시 column속성 필수 -->
+	<!-- type속성은 configuration.xml에 등록한 자바빈의 별칭임 -->
+	<resultMap id="PharmacyDtoResult" type="PharmacyDto">
+		<result property="phno" column="phno"/>
+		<result property="phname" column="phname"/>
+		<result property="phaddr" column="phaddr"/>
+		<result property="pholiday" column="pholiday"/>
+		<result property="phphone" column="phphone"/>
+		<result property="phmon" column="phmon"/>
+		<result property="phtue" column="phtue"/>
+		<result property="phwed" column="phwed"/>
+		<result property="phthu" column="phthu"/>
+		<result property="phfri" column="phfri"/>
+		<result property="phsat" column="phsat"/>
+		<result property="phsun" column="phsun"/>
+	</resultMap>
+	
+	<select id="PharmacyList" parameterType="java.util.Map" resultType="PharmacyDto">
+		<if test="!phname.equals('') and !phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM pharmacy WHERE phaddr LIKE '%' || #{phaddr} || '%' AND phname LIKE '%' || #{phname} || '%' ORDER BY phno) P) WHERE R BETWEEN #{start} AND #{end}
+		</if>
+		<if test="phname.equals('') and !phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM pharmacy WHERE phaddr LIKE '%' || #{phaddr} || '%' ORDER BY phno) P) WHERE R BETWEEN #{start} AND #{end} 
+		</if>
+		<if test="!phname.equals('') and phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM pharmacy WHERE phname LIKE '%' || #{phname} || '%' ORDER BY phno) P) WHERE R BETWEEN #{start} AND #{end} 
+		</if>
+		<if test="phname.equals('') and phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM pharmacy ORDER BY phno) P) WHERE R BETWEEN #{start} AND #{end} 
+		</if>
+	</select>
+	
+	<select id="PharmacyRecordCount" parameterType="java.util.Map" resultType="int">
+		<if test="!phname.equals('') and !phaddr.equals('')">
+			SELECT COUNT(*) FROM pharmacy WHERE phaddr LIKE '%' || #{phaddr} || '%' AND phname LIKE '%' || #{phname} || '%' 
+		</if>
+		<if test="phname.equals('') and !phaddr.equals('')">
+			SELECT COUNT(*) FROM pharmacy WHERE phaddr LIKE '%' || #{phaddr} || '%' 
+		</if>
+		<if test="!phname.equals('') and phaddr.equals('')">
+			SELECT COUNT(*) FROM pharmacy WHERE phname LIKE '%' || #{phname} || '%' 
+		</if>
+		<if test="phname.equals('') and phaddr.equals('')">
+			SELECT COUNT(*) FROM pharmacy 
+		</if>
+	</select>
+	
+	
+	<select id="PharmacyOne" parameterType="java.util.Map" resultType="PharmacyDto">
+		SELECT * FROM pharmacy WHERE phno = #{no}
+	</select>
+	
+	<update id="PharmacyUpdate" parameterType="java.util.Map">
+		UPDATE pharmacy SET phname=#{name}, phaddr=#{addr}, phphone=#{phone}, pholiday=#{holiday},
+		phmon=#{mon}, phtue=#{tue}, phwed=#{wed}, phthu=#{thu}, phfri=#{fri}, phsat=#{sat}, phsun=#{sun}
+		WHERE phno=#{no}
+	</update>
+	
+	<delete id="PharmacyDelete" parameterType="java.util.Map">
+		DELETE FROM pharmacy WHERE phno=#{no}	
+	</delete>
+	
+	<insert id="PharmacyInsert" parameterType="java.util.Map">
+		INSERT INTO pharmacy (phno, phname, phaddr, pholiday, phphone, phmon, phtue, phwed, phthu, phfri, phsat, phsun)
+		VALUES (seq_pharm.NEXTVAL, #{name}, #{addr}, #{holiday}, #{phone}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun})
+	</insert>
+	
+</mapper>

@@ -408,10 +408,13 @@
    
    </script>
    <style>
-   	div, .card-title {
-   		font-family: monospace;
-   		
-   	}
+      div, .card-title {
+         font-family: monospace;
+      }
+      .card-title {
+      	font-size: 1.8em;
+      	font-weight: bold;
+      }
    </style>
 </head>
 <body>
@@ -424,8 +427,8 @@
       <jsp:include page="/WEB-INF/template/Side.jsp"/>
       <!-- partial -->
       <div class="main-panel">
-      	<div class="content-wrapper"><!--내용들어갈 다이브-->
-      	
+         <div class="content-wrapper"><!--내용들어갈 다이브-->
+         
            <!-- 상단 차트 시작 -->
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
@@ -516,21 +519,21 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                	<div class="chartjs-size-monitor">
-	                  <h4 class="card-title">나이대별</h4>
-	                  <canvas class="chartjs-render-monitor" id="pieChart" style="height:250px"></canvas>
-	                </div>
+                   <div class="chartjs-size-monitor">
+                     <h4 class="card-title">시간대별</h4>
+                     <canvas class="chartjs-render-monitor" id="lineChart" style="height:250px"></canvas>
+                   </div>
                 </div>
               </div>
-            </div>
+            </div>     
             <!-- 동그라미 차트 -->          
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                	<div class="chartjs-size-monitor">
-	                  <h4 class="card-title">요일별</h4>
-	                  <canvas class="chartjs-render-monitor" id="barChart" style="height:230px"></canvas>
-	                </div>
+                   <div class="chartjs-size-monitor">
+                     <h4 class="card-title">예약 접수 비율</h4>
+                     <canvas class="chartjs-render-monitor" id="doughnutChart" style="height:250px"></canvas>
+                   </div>
                 </div>
               </div>
             </div>
@@ -539,23 +542,23 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                	<div class="chartjs-size-monitor">
-	                  <h4 class="card-title">시간대별</h4>
-	                  <canvas class="chartjs-render-monitor" id="lineChart" style="height:250px"></canvas>
-	                </div>
+                   <div class="chartjs-size-monitor">
+                     <h4 class="card-title">나이대별</h4>
+                     <canvas class="chartjs-render-monitor" id="pieChart" style="height:250px"></canvas>
+                   </div>
                 </div>
               </div>
-            </div>          
+            </div>   
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                	<div class="chartjs-size-monitor">
-	                  <h4 class="card-title">예약 접수 비율</h4>
-	                  <canvas class="chartjs-render-monitor" id="doughnutChart" style="height:250px"></canvas>
-	                </div>
+                   <div class="chartjs-size-monitor">
+                     <h4 class="card-title">요일별</h4>
+                     <canvas class="chartjs-render-monitor" id="barChart" style="height:230px"></canvas>
+                   </div>
                 </div>
               </div>
-            </div>
+            </div>                        
           </div>          
           <!-- 차트2 -->
         <!-- content-wrapper ends -->

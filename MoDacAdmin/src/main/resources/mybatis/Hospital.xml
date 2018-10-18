@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis/Hospital">
+	<!-- 마이바티스는 resultMap사용 시 column속성 필수 -->
+	<!-- type속성은 configuration.xml에 등록한 자바빈의 별칭임 -->
+	<resultMap id="HospitalDtoResult" type="HospitalDto">
+		<result property="hosno" column="hosno"/>
+		<result property="hosaddr" column="hosaddr"/>
+		<result property="hosname" column="hosname"/>
+		<result property="hosphone" column="hosphone"/>
+		<result property="mon" column="mon"/>
+		<result property="tue" column="tue"/>
+		<result property="wed" column="wed"/>
+		<result property="thu" column="thu"/>
+		<result property="fri" column="fri"/>
+		<result property="sat" column="sat"/>
+		<result property="sun" column="sun"/>
+		<result property="holiday" column="holiday"/>
+		<result property="subjectcode" column="subjectcode"/>
+		<result property="subname" column="subname"/>
+		<result property="pid" column="pid"/>
+	</resultMap>
+	
+	
+	<select id="HospitalList" parameterType="java.util.Map" resultType="HospitalDto">
+		<!-- 검색 조건에 해당하는 병원 정보 가져오기 -->
+		<if test="hosname.equals('') and hosaddr.equals('')">
+			SELECT HP.*, PT.pid FROM hospital HP
+			LEFT OUTER JOIN partners PT ON HP.hosno = PT.hosno
+		</if>
+		<if test="!hosname.equals('') and hosaddr.equals('')">
+			SELECT HP.*, PT.pid FROM hospital HP
+			LEFT OUTER JOIN partners PT ON HP.hosno = PT.hosno
+			WHERE HP.hosname LIKE '%' || #{hosname} || '%'
+		</if>
+		<if test="hosname.equals('') and !hosaddr.equals('')">
+			SELECT HP.*, PT.pid FROM hospital HP
+			LEFT OUTER JOIN partners PT ON HP.hosno = PT.hosno
+			WHERE HP.hosaddr LIKE '%' || #{hosaddr} || '%'
+		</if>
+		<if test="!hosname.equals('') and !hosaddr.equals('')">
+			SELECT HP.*, PT.pid FROM hospital HP
+			LEFT OUTER JOIN partners PT ON HP.hosno = PT.hosno
+			WHERE HP.hosaddr LIKE '%' || #{hosaddr} || '%' 
+			AND HP.hosname LIKE '%' || #{hosname} || '%'
+		</if>
+	</select>
+	
+	<select id="SubjectList" parameterType="java.util.Map" resultType="HospitalDto">
+		SELECT * FROM hossubject HS
+		JOIN subject SB ON HS.subjectcode = SB.subjectcode
+		WHERE HS.hosno=#{hosno}	
+	</select>
+	
+	<select id="HospitalOne" parameterType="java.util.Map" resultType="HospitalDto">
+		SELECT HP.*, PT.pid FROM hospital HP
+		LEFT OUTER JOIN partners PT ON HP.hosno = PT.hosno
+		WHERE HP.hosno=#{hosno} 
+	</select>
+	
+	<insert id="HospitalInsert" parameterType="java.util.Map">
+		INSERT INTO hospital (hosno, hosname, hosaddr, hosphone, mon, tue, wed, thu, fri, sat, sun, holiday) 
+		VALUES (seq_jihuntest.NEXTVAL, #{name}, #{addr}, #{phone}, #{mon}, #{thu}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun}, #{holiday})
+	</insert>
+	
+	<insert id="SubjectInsert" parameterType="java.util.Map">
+		INSERT INTO HOSSUBJECT (hosno, subjectcode) VALUES (seq_jihuntest.CURRVAL, #{subject})
+	</insert>
+	
+	<delete id="SubjectDelete" parameterType="java.util.Map">
+		DELETE FROM hossubject WHERE hosno=#{hosno}
+	</delete>
+	
+	<delete id="HospitalDelete" parameterType="java.util.Map">
+		DELETE FROM hospital WHERE hosno=#{hosno}
+	</delete>
+	
+	<update id="HospitalUpdate" parameterType="java.util.Map">
+		UPDATE hospital SET hosname=#{hosname}, hosaddr=#{hosaddr}, hosphone=#{hosphone},
+		mon=#{mon}, tue=#{tue}, wed=#{wed}, thu=#{thu}, fri=#{fri}, sat=#{sat}, sun=#{sun}, holiday=#{holiday}
+		WHERE hosno=#{hosno}  
+	</update>
+	
+	<insert id="SubjectUpdate" parameterType="java.util.Map">
+		INSERT INTO hossubject (hosno, subjectcode) VALUES (#{hosno}, #{subject})
+	</insert>	
+	
+</mapper>

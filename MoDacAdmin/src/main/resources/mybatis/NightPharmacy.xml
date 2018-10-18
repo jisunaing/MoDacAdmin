@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis/NightPharmacy">
+	<!-- 마이바티스는 resultMap사용 시 column속성 필수 -->
+	<!-- type속성은 configuration.xml에 등록한 자바빈의 별칭임 -->
+	<resultMap id="NightPharmacyDtoResult" type="NightPharmacyDto">
+		<result property="nphno" column="nphno"/>
+		<result property="nphname" column="nphname"/>
+		<result property="nphaddr" column="nphaddr"/>
+		<result property="npholiday" column="npholiday"/>
+		<result property="nphphone" column="nphphone"/>
+		<result property="nphmon" column="nphmon"/>
+		<result property="nphtue" column="nphtue"/>
+		<result property="nphwed" column="nphwed"/>
+		<result property="nphthu" column="nphthu"/>
+		<result property="nphfri" column="nphfri"/>
+		<result property="nphsat" column="nphsat"/>
+		<result property="nphsun" column="nphsun"/>
+	</resultMap>
+	
+	<select id="NightPharmacyList" parameterType="java.util.Map" resultType="NightPharmacyDto">
+		<if test="!phname.equals('') and !phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM nightpharmacy WHERE nphaddr LIKE '%' || #{phaddr} || '%' AND nphname LIKE '%' || #{phname} || '%' ORDER BY nphno ) P) WHERE R BETWEEN #{start} AND #{end}
+		</if>
+		<if test="phname.equals('') and !phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM nightpharmacy WHERE nphaddr LIKE '%' || #{phaddr} || '%' ORDER BY nphno) P) WHERE R BETWEEN #{start} AND #{end} 
+		</if>
+		<if test="!phname.equals('') and phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM nightpharmacy WHERE nphname LIKE '%' || #{phname} || '%' ORDER BY nphno) P) WHERE R BETWEEN #{start} AND #{end} 
+		</if>
+		<if test="phname.equals('') and phaddr.equals('')">
+			SELECT * FROM (SELECT P.*, ROWNUM R FROM (SELECT * FROM nightpharmacy ORDER BY nphno) P) WHERE R BETWEEN #{start} AND #{end} 
+		</if>
+	</select>
+	
+	<select id="NightPharmacyRecordCount" parameterType="java.util.Map" resultType="int">
+		<if test="!phname.equals('') and !phaddr.equals('')">
+			SELECT COUNT(*) FROM nightpharmacy WHERE nphaddr LIKE '%' || #{phaddr} || '%' AND nphname LIKE '%' || #{phname} || '%' 
+		</if>
+		<if test="phname.equals('') and !phaddr.equals('')">
+			SELECT COUNT(*) FROM nightpharmacy WHERE nphaddr LIKE '%' || #{phaddr} || '%' 
+		</if>
+		<if test="!phname.equals('') and phaddr.equals('')">
+			SELECT COUNT(*) FROM nightpharmacy WHERE nphname LIKE '%' || #{phname} || '%' 
+		</if>
+		<if test="phname.equals('') and phaddr.equals('')">
+			SELECT COUNT(*) FROM nightpharmacy 
+		</if>
+	</select>
+	
+	<select id="NightPharmacyOne" parameterType="java.util.Map" resultType="NightPharmacyDto">
+		SELECT * FROM nightpharmacy WHERE nphno = #{no}
+	</select>
+	
+	<update id="NightPharmacyUpdate" parameterType="java.util.Map">
+		UPDATE  nightpharmacy SET nphname=#{name}, nphaddr=#{addr}, nphphone=#{phone}, npholiday=#{holiday},
+		nphmon=#{mon}, nphtue=#{tue}, nphwed=#{wed}, nphthu=#{thu}, nphfri=#{fri}, nphsat=#{sat}, nphsun=#{sun}
+		WHERE nphno=#{no}
+	</update>
+	
+	<delete id="NightPharmacyDelete" parameterType="java.util.Map">
+		DELETE FROM nightpharmacy WHERE nphno=#{no}	
+	</delete>
+	
+	<insert id="NightPharmacyInsert" parameterType="java.util.Map">
+		INSERT INTO nightpharmacy (nphno, nphname, nphaddr, npholiday, nphphone, nphmon, nphtue, nphwed, nphthu, nphfri, nphsat, nphsun)
+		VALUES (seq_nightpharm.NEXTVAL, #{name}, #{addr}, #{holiday}, #{phone}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun})
+	</insert>
+	
+</mapper>

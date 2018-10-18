@@ -3,13 +3,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="<c:url value='/Bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/Bootstrap/js/bootstrap.min.js'/>"></script>
 
 <script>
 /* 유효성 체크 */
-/*
 	$(function() {
 		$('form').on('submit', function() {
 			if ($("#name").val() == "") {
@@ -17,9 +14,9 @@
 				$("#name").focus();
 				return false;
 			}
-			if ($("#contact").val() == "") {
+			if ($("#phone").val() == "") {
 				alert("연락처를 입력하세요");
-				$("#contact").focus();
+				$("#phone").focus();
 				return false;
 			}
 			if ($("#addr").val() == "") {
@@ -27,94 +24,48 @@
 				$("#addr").focus();
 				return false;
 			}
-			if ($("#pass").val() == "") {
-				alert("비밀번호를 입력하세요");
-				$("#pass").focus();
+			if ($("#mon").val() == "") {
+				alert("월요일 영업시간을 입력하세요");
+				$("#mon").focus();
 				return false;
 			}
-			if ($("#monopen").val() == "") {
-				alert("월요일 오픈시간을 선택하세요");
-				$("#monopen").focus();
+			if ($("#tue").val() == "") {
+				alert("화요일 영업시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#monclose").val() == "") {
-				alert("월요일 마감시간을 선택하세요");
-				$("#monclose").focus();
+			if ($("#wed").val() == "") {
+				alert("수요일 영업시간을 입력하세요");
+				$("#wed").focus();
 				return false;
 			}
-			if ($("#tueopen").val() == "") {
-				alert("화요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#thu").val() == "") {
+				alert("목요일 영업시간을 입력하세요");
+				$("#thu").focus();
 				return false;
 			}
-			if ($("#tueclose").val() == "") {
-				alert("화요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#fri").val() == "") {
+				alert("금요일 영업시간을 입력하세요");
+				$("#fri").focus();
 				return false;
 			}
-			if ($("#wedopen").val() == "") {
-				alert("수요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sat").val() == "") {
+				alert("토요일 영업시간을 입력하세요");
+				$("#sat").focus();
 				return false;
 			}
-			if ($("#wedclose").val() == "") {
-				alert("수요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sun").val() == "") {
+				alert("일요일 영업시간을 입력하세요");
+				$("#sun").focus();
 				return false;
 			}
-			if ($("#thuopen").val() == "") {
-				alert("목요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#thuclose").val() == "") {
-				alert("목요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#friopen").val() == "") {
-				alert("금요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#friclose").val() == "") {
-				alert("금요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#satopen").val() == "") {
-				alert("토요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#satclose").val() == "") {
-				alert("토요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#sunopen").val() == "") {
-				alert("일요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#sunclose").val() == "") {
-				alert("일요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#holiopen").val() == "") {
-				alert("공휴일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#holiclose").val() == "") {
-				alert("공휴일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#holiday").val() == "") {
+				alert("공휴일 영업시간을 입력하세요");
+				$("#holiday").focus();
 				return false;
 			}
 		});
 	});
-*/
 </script>
 
 <style>
@@ -134,114 +85,117 @@
       
       <hr/>
       
-      <form class="forms-sample" method="post" action="<c:url value='PharmEditComplete.do'/>">
+      <c:if test="${empty pharm}" var="isEmpty">
+		<c:set var="no" value="${nightPharm.nphno}"/>
+		<c:set var="addr" value="${nightPharm.nphaddr}"/>
+		<c:set var="name" value="${nightPharm.nphname}"/>
+		<c:set var="phone" value="${nightPharm.nphphone}"/>
+		<c:set var="mon" value="${nightPharm.nphmon}"/>
+		<c:set var="tue" value="${nightPharm.nphtue}"/>
+		<c:set var="wed" value="${nightPharm.nphwed}"/>
+		<c:set var="thu" value="${nightPharm.nphthu}"/>
+		<c:set var="fri" value="${nightPharm.nphfri}"/>
+		<c:set var="sat" value="${nightPharm.nphsat}"/>
+		<c:set var="sun" value="${nightPharm.nphsun}"/>
+		<c:set var="holiday" value="${nightPharm.npholiday}"/>
+	  </c:if>
+	  <c:if test="${not isEmpty}">
+		<c:set var="no" value="${pharm.phno}"/>
+		<c:set var="addr" value="${pharm.phaddr}"/>
+		<c:set var="name" value="${pharm.phname}"/>
+		<c:set var="phone" value="${pharm.phphone}"/>
+		<c:set var="mon" value="${pharm.phmon}"/>
+		<c:set var="tue" value="${pharm.phtue}"/>
+		<c:set var="wed" value="${pharm.phwed}"/>
+		<c:set var="thu" value="${pharm.phthu}"/>
+		<c:set var="fri" value="${pharm.phfri}"/>
+		<c:set var="sat" value="${pharm.phsat}"/>
+		<c:set var="sun" value="${pharm.phsun}"/>
+		<c:set var="holiday" value="${pharm.pholiday}"/>
+	  </c:if>		        
+      
+      <c:if test="${empty pharm}" var="isEmpty">
+      	<c:url var="url" value='PharmEditComplete.do?pharm=night&no=${no}'/>
+      </c:if>
+      <c:if test="${not isEmpty}">
+      	<c:url var="url" value='PharmEditComplete.do?pharm=all&no=${no}'/>
+      </c:if>
+      
+      <form class="forms-sample" method="post" action="${url}">
         <div class="form-group row">
           <label for="name" class="col-sm-1 col-form-label">약국명</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="name" name="name" placeholder="약국명을 입력하세요"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="name" name="name" value="${name}" placeholder="약국명을 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">연락처</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="contact" name="contact" placeholder="연락처를 입력하세요"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="phone" name="phone" value="${phone}" placeholder="연락처를 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">
           <label for="addr" class="col-sm-1 col-form-label">주소</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/>
+            <input type="text" class="form-control" id="addr" name="addr" value="${addr}" placeholder="주소를 입력하세요"/>
           </div>
         </div>
         
        <hr/> 
        
-	   <div class="form-group row">
-          <label for="contact" class="col-sm-10 col-form-label">영업시간
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          [ 쉬는 요일은 OPEN과 CLOSE를 '휴무'로 입력해주세요 ]</label>
-       </div>
-	   
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label"></label>
-          <div class="col-sm-1 col-form-label">
-    	      <label for="contact" class="col-form-label">[ OPEN ]</label>
-          </div>
-          <div class="col-sm-1 col-form-label">
-	          <label for="contact" class="col-form-label">[ CLOSE ]</label>
+          <div class="col-sm-3 col-form-label">
+    	      <label for="contact" class="col-form-label">쉬는 요일은 <strong>휴무</strong>로 입력해주십시오.</label>
           </div>
         </div>
         
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">월요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="monopen" name="monopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="monclose" name="monclose" placeholder="18:00"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="mon" name="mon" value="${mon}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">화요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="tueopen" name="tueopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="tueclose" name="tueclose" placeholder="18:00"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="tue" name="tue" value="${tue}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">수요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="wedopen" name="wedopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="wedclose" name="wedclose" placeholder="24:00"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="wed" name="wed" value="${wed}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">목요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="thuopen" name="thuopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="thuclose" name="thuclose" placeholder="18:00"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="thu" name="thu" value="${thu}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">금요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="friopen" name="friopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="friclose" name="friclose" placeholder="18:00"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="fri" name="fri" value="${fri}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">토요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="satopen" name="satopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="satclose" name="satclose" placeholder="13:00"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="sat" name="sat" value="${sat}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">일요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="sunopen" name="sunopen" placeholder="휴무"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="sunclose" name="sunclose" placeholder="휴무"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="sun" name="sun" value="${sun}" placeholder="휴무"/>
           </div>
         </div>
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label">공휴일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="holiopen" name="holiopen" placeholder="휴무"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="holiclose" name="holiclose" placeholder="휴무"/>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="holiday" name="holiday" value="${holiday}" placeholder="휴무"/>
           </div>
         </div>
       

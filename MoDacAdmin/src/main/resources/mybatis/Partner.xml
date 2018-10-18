@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis/Partner">
+	
+	
+	
+	
+	
+	<select id="PartnerInfo" parameterType="java.util.Map" resultType="java.util.Map">
+	
+	SELECT H.HOSNAME,H.HOSADDR,P.* FROM PARTNERS P JOIN HOSPITAL H ON H.HOSNO = P.HOSNO
+	
+	WHERE H.HOSNO = #{hosno}
+	
+		
+	</select>
+	
+	
+	
+	<select id="PartnerJoin" parameterType="java.util.Map"  resultType="java.util.Map">
+	
+	SELECT H.HOSNO,H.HOSNAME,P.HOSMANAGER,P.PPHONE,H.HOSADDR FROM PARTNERS P JOIN HOSPITAL H 
+	
+	ON H.HOSNO = P.HOSNO WHERE ACCEPT = 'N'
+	
+	 <if test="searchColumn !=null">
+    
+    AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+    		
+    </if>
+	
+	
+	ORDER BY h.hosno DESC
+	
+		
+	</select>
+	
+	
+	<!--  제휴신청 페이지 레코드 수 가져오는 부분 -->
+   	<select id="GetTotalRequest"  parameterType="java.util.Map" resultType="int">
+   	
+	SELECT COUNT(*) FROM PARTNERS P JOIN HOSPITAL H ON P.HOSNO = H.HOSNO WHERE ACCEPT = 'N'
+	
+	<if test="searchColumn !=null">
+   		AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+   		  	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="PartnerWithdrawal" parameterType="java.util.Map"  resultType="java.util.Map">
+	
+	select h.hosno,h.hosname,p.hosmanager,p.pphone,out.reqdate from partners p join hospital h on p.hosno = h.hosno
+	join partnerout out on p.pid = out.pid 
+	
+	where accept = 'D'
+	
+	<if test="searchColumn !=null">
+   		AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+	
+	ORDER BY out.reqdate DESC
+		
+	</select>
+	
+	
+	
+	<select id="PartnerWithdrawalInfo" parameterType="java.util.Map"  resultType="java.util.Map">
+	
+	select h.hosno,h.hosname,p.pphone,out.REQDETAIL,p.pemail,p.pid from
+	 partners p join hospital h on p.hosno = h.hosno
+				join partnerout out on out.pid = p.pid where h.hosno = #{hosno}
+	
+			
+	</select>
+	
+	<!--  탈퇴신청 페이지 레코드 수 가져오는 부분 -->
+   	<select id="GetTotalWithdrawal"  parameterType="java.util.Map" resultType="int">
+   	
+	SELECT COUNT(*) FROM PARTNERS P JOIN HOSPITAL H ON P.HOSNO = H.HOSNO where accept = 'D'
+	
+	<if test="searchColumn !=null">
+   		AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+   		  	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="PartnerList" parameterType="java.util.Map" resultType="java.util.Map">
+	
+	SELECT H.HOSNO,P.PID,H.HOSNAME,P.HOSMANAGER,P.PPHONE,H.HOSADDR FROM PARTNERS P JOIN
+	HOSPITAL H ON H.HOSNO = P.HOSNO WHERE ACCEPT = 'Y'
+	
+	<if test="searchColumn !=null">
+   		AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+	
+	ORDER BY H.HOSNO
+			
+	</select>
+	
+	
+	<select id="partnerView" parameterType="java.util.Map"  resultType="java.util.Map">
+	
+    SELECT P.LUNCH,P.INFO,H.MON,H.TUE,H.WED,H.THU,H.FRI,H.SAT,H.SUN,H.HOLIDAY,H.HOSNAME,H.HOSNO,H.HOSADDR,H.HOSPHONE,P.PID  FROM PARTNERS P JOIN HOSPITAL H ON P.hosno = H.hosno
+	WHERE h.hosno = #{hosno}
+	
+			
+	</select>
+	
+
+	
+	<!--  제휴회원 전체 페이지 레코드 수 가져오는 부분 -->
+   	<select id="GetTotalPartner"  parameterType="java.util.Map" resultType="int">
+   	
+	SELECT COUNT(*) FROM PARTNERS P JOIN HOSPITAL H ON P.HOSNO = H.HOSNO where accept = 'Y'
+	
+	<if test="searchColumn !=null">
+   		AND ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+   		  	
+	</select>
+	
+	
+	<delete id="DeletePID" parameterType="java.util.Map" statementType="CALLABLE" >			
+		{call deletepid(#{pid})}				
+	</delete>
+	
+	
+	<delete id="DeleteHOSNO" parameterType="java.util.Map" statementType="CALLABLE" >	
+		{call deletehosno(#{hosno})}		
+	</delete>
+	
+	<update id="UpdateAccept" parameterType="java.util.Map" >	
+	UPDATE PARTNERS SET ACCEPT = 'Y' WHERE PID = #{pid}		
+	</update>
+	
+	
+	<!-- 특정회원에 따른 SubjectCode 가져오기 -->	
+	<select id="PartnerSubjectListAll" parameterType="java.util.Map" resultType="java.util.Map">
+	
+	SELECT h.subjectcode,h.hosno,subname FROM HOSSUBJECT H JOIN
+	SUBJECT S ON H.SUBJECTCODE = S.SUBJECTCODE  WHERE H.HOSNO = #{hosno}
+	
+	</select>
+	
+
+	
+	
+	
+	
+</mapper>

@@ -132,23 +132,23 @@
       
       <hr/>
       
-      <form class="forms-sample" method="post" action="<c:url value='HospitalEditComplete.do'/>">
+      <form class="forms-sample" method="post" action="<c:url value='HospitalEditComplete.do?hosno=${requestScope.record.hosno}'/>">
         <div class="form-group row">
-          <label for="name" class="col-sm-1 col-form-label">병원명</label>
+          <label for="hosname" class="col-sm-1 col-form-label">병원명</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="name" name="name" placeholder="병원명을 입력하세요"/>
+            <input type="text" class="form-control" id="hosname" name="hosname" value="${requestScope.record.hosname}" placeholder="병원명을 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">연락처</label>
+          <label for="hosphone" class="col-sm-1 col-form-label">연락처</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="contact" name="contact" placeholder="연락처를 입력하세요"/>
+            <input type="text" class="form-control" id="hosphone" name="hosphone" value="${requestScope.record.hosphone}" placeholder="연락처를 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">
-          <label for="addr" class="col-sm-1 col-form-label">주소</label>
+          <label for="hosaddr" class="col-sm-1 col-form-label">주소</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/>
+            <input type="text" class="form-control" id="hosaddr" name="hosaddr" value="${requestScope.record.hosaddr}" placeholder="주소를 입력하세요"/>
           </div>
         </div>
         
@@ -160,27 +160,27 @@
              <div class="form-group">
                <div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="가정의학과">가정의학과
+                   <input type="checkbox" name="subject" class="form-check-input" value="가정의학과" <c:if test="${requestScope.family == '가정의학과'}">checked</c:if>  />가정의학과
                  </label>
                </div>
                <div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="결핵과"> 결핵과
+                   <input type="checkbox" name="subject" class="form-check-input" value="결핵과" <c:if test="${requestScope.tuberculosis == '결핵과'}">checked</c:if> /> 결핵과
                  </label>
                </div>
                <div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="내과"> 내과
+                   <input type="checkbox" name="subject" class="form-check-input" value="내과" <c:if test="${requestScope.medicine == '내과'}">checked</c:if> /> 내과
                  </label>
                </div>
                <div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="마취통증의학과"> 마취통증의학과
+                   <input type="checkbox" name="subject" class="form-check-input" value="마취통증의학과" <c:if test="${requestScope.anesthetic == '마취통증의학과'}">checked</c:if> /> 마취통증의학과
                  </label>
                </div>
                <div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="비뇨의학과"> 비뇨의학과
+                   <input type="checkbox" name="subject" class="form-check-input" value="비뇨의학과" <c:if test="${requestScope.urology == '비뇨의학과'}">checked</c:if> /> 비뇨의학과
                  </label>
                </div>
              </div>
@@ -189,27 +189,27 @@
              <div class="form-group">
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="피부과"> 피부과
+                   <input type="checkbox" name="subject" class="form-check-input" value="피부과" <c:if test="${requestScope.skin == '피부과'}">checked</c:if> /> 피부과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="산부인과"> 산부인과
+                   <input type="checkbox" name="subject" class="form-check-input" value="산부인과" <c:if test="${requestScope.obstetrics == '산부인과'}">checked</c:if> /> 산부인과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="성형외과"> 성형외과
+                   <input type="checkbox" name="subject" class="form-check-input" value="성형외과" <c:if test="${requestScope.plastic == '성형외과'}">checked</c:if> /> 성형외과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="소아청소년과"> 소아청소년과
+                   <input type="checkbox" name="subject" class="form-check-input" value="소아청소년과" <c:if test="${requestScope.child == '소아청소년과'}">checked</c:if> /> 소아청소년과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="신경외과"> 신경외과
+                   <input type="checkbox" name="subject" class="form-check-input" value="신경외과" <c:if test="${requestScope.nerve == '신경외과'}">checked</c:if> /> 신경외과
                  </label>
                </div>
              </div>
@@ -218,27 +218,27 @@
             <div class="form-group">
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="안과"> 안과
+                   <input type="checkbox" name="subject" class="form-check-input" value="안과" <c:if test="${requestScope.ophthalmology == '안과'}">checked</c:if> /> 안과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="영상의학과"> 영상의학과
+                   <input type="checkbox" name="subject" class="form-check-input" value="영상의학과" <c:if test="${requestScope.imaging == '영상의학과'}">checked</c:if> /> 영상의학과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="외과"> 외과
+                   <input type="checkbox" name="subject" class="form-check-input" value="외과" <c:if test="${requestScope.surgery == '외과'}">checked</c:if> /> 외과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="이비인후과"> 이비인후과
+                   <input type="checkbox" name="subject" class="form-check-input" value="이비인후과" <c:if test="${requestScope.otorhinolaryngology == '이비인후과'}">checked</c:if>/> 이비인후과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="재활의학과"> 재활의학과
+                   <input type="checkbox" name="subject" class="form-check-input" value="재활의학과" <c:if test="${requestScope.rehabilitation == '재활의학과'}">checked</c:if>/> 재활의학과
                  </label>
                </div>
              </div>
@@ -247,27 +247,27 @@
              <div class="form-group">
                <div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="정신건강의학과"> 정신건강의학과
+                   <input type="checkbox" name="subject" class="form-check-input" value="정신건강의학과" <c:if test="${requestScope.mental == '정신건강의학과'}">checked</c:if>/> 정신건강의학과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="정형외과"> 정형외과
+                   <input type="checkbox" name="subject" class="form-check-input" value="정형외과" <c:if test="${requestScope.orthopedics == '정형외과'}">checked</c:if>/> 정형외과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="치과"> 치과
+                   <input type="checkbox" name="subject" class="form-check-input" value="치과" <c:if test="${requestScope.dentist == '치과'}">checked</c:if>/> 치과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="한방과"> 한방과
+                   <input type="checkbox" name="subject" class="form-check-input" value="한방과" <c:if test="${requestScope.oriental == '한방과'}">checked</c:if>/> 한방과
                  </label>
                </div>
              	<div class="form-check form-check-flat">
                  <label class="form-check-label">
-                   <input type="checkbox" name="subject" class="form-check-input" value="흉부외과"> 흉부외과
+                   <input type="checkbox" name="subject" class="form-check-input" value="흉부외과" <c:if test="${requestScope.thoracic == '흉부외과'}">checked</c:if>/> 흉부외과
                  </label>
                </div>
              </div>
@@ -276,92 +276,59 @@
        
        <hr/> 
        
-	   <div class="form-group row">
-          <label for="contact" class="col-sm-10 col-form-label">진료시간
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          [ 쉬는 요일은 OPEN과 CLOSE를 '휴무'로 입력해주세요 ]</label>
-       </div>
-	   
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label"></label>
-          <div class="col-sm-1 col-form-label">
-    	      <label for="contact" class="col-form-label">[ OPEN ]</label>
-          </div>
-          <div class="col-sm-1 col-form-label">
-	          <label for="contact" class="col-form-label">[ CLOSE ]</label>
+       	  <label for="contact" class="col-sm-1 col-form-label"></label>
+          <div class="col-sm-2 col-form-label">
+    	      <label for="contact" class="col-form-label">쉬는 요일은 <strong>휴무</strong>로 입력해주십시오.</label>
           </div>
         </div>
         
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">월요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="monopen" name="monopen" placeholder="09:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>월요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="mon" name="mon" value="${requestScope.record.mon}" placeholder="09:00~18:00"/>
           </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="monclose" name="monclose" placeholder="18:00"/>
+       </div>
+       <div class="form-group row">
+          <label for="contact" class="col-sm-1 col-form-label"><strong>화요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="tue" name="tue" value="${requestScope.record.tue}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">화요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="tueopen" name="tueopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="tueclose" name="tueclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>수요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="wed" name="wed" value="${requestScope.record.wed}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">수요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="wedopen" name="wedopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="wedclose" name="wedclose" placeholder="24:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>목요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="thu" name="thu" value="${requestScope.record.thu}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">목요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="thuopen" name="thuopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="thuclose" name="thuclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>금요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="fri" name="fri" value="${requestScope.record.fri}" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">금요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="friopen" name="friopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="friclose" name="friclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>토요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="sat" name="sat" value="${requestScope.record.sat}" placeholder="09:00~13:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">토요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="satopen" name="satopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="satclose" name="satclose" placeholder="13:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>일요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="sun" name="sun" value="${requestScope.record.sun}" placeholder="휴무"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">일요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="sunopen" name="sunopen" placeholder="휴무"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="sunclose" name="sunclose" placeholder="휴무"/>
-          </div>
-        </div>
-       <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">공휴일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="holiopen" name="holiopen" placeholder="휴무"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="holiclose" name="holiclose" placeholder="휴무"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>공휴일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="holiday" name="holiday" value="${requestScope.record.holiday}" placeholder="휴무"/>
           </div>
         </div>
       

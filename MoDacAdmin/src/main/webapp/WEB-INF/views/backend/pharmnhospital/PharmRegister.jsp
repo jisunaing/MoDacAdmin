@@ -3,23 +3,20 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="<c:url value='/Bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/Bootstrap/js/bootstrap.min.js'/>"></script>
 
 <script>
 /* 유효성 체크 */
-/*
-	$(function() {
+$(function() {
 		$('form').on('submit', function() {
 			if ($("#name").val() == "") {
 				alert("약국명을 입력하세요");
 				$("#name").focus();
 				return false;
 			}
-			if ($("#contact").val() == "") {
+			if ($("#phone").val() == "") {
 				alert("연락처를 입력하세요");
-				$("#contact").focus();
+				$("#phone").focus();
 				return false;
 			}
 			if ($("#addr").val() == "") {
@@ -27,99 +24,53 @@
 				$("#addr").focus();
 				return false;
 			}
-			if ($("#pass").val() == "") {
-				alert("비밀번호를 입력하세요");
-				$("#pass").focus();
+			if ($("#mon").val() == "") {
+				alert("월요일 영업시간을 입력하세요");
+				$("#mon").focus();
 				return false;
 			}
-			if ($("#monopen").val() == "") {
-				alert("월요일 오픈시간을 선택하세요");
-				$("#monopen").focus();
+			if ($("#tue").val() == "") {
+				alert("화요일 영업시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#monclose").val() == "") {
-				alert("월요일 마감시간을 선택하세요");
-				$("#monclose").focus();
+			if ($("#wed").val() == "") {
+				alert("수요일 영업시간을 입력하세요");
+				$("#wed").focus();
 				return false;
 			}
-			if ($("#tueopen").val() == "") {
-				alert("화요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#thu").val() == "") {
+				alert("목요일 영업시간을 입력하세요");
+				$("#thu").focus();
 				return false;
 			}
-			if ($("#tueclose").val() == "") {
-				alert("화요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#fri").val() == "") {
+				alert("금요일 영업시간을 입력하세요");
+				$("#fri").focus();
 				return false;
 			}
-			if ($("#wedopen").val() == "") {
-				alert("수요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sat").val() == "") {
+				alert("토요일 영업시간을 입력하세요");
+				$("#sat").focus();
 				return false;
 			}
-			if ($("#wedclose").val() == "") {
-				alert("수요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sun").val() == "") {
+				alert("일요일 영업시간을 입력하세요");
+				$("#sun").focus();
 				return false;
 			}
-			if ($("#thuopen").val() == "") {
-				alert("목요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#thuclose").val() == "") {
-				alert("목요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#friopen").val() == "") {
-				alert("금요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#friclose").val() == "") {
-				alert("금요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#satopen").val() == "") {
-				alert("토요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#satclose").val() == "") {
-				alert("토요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#sunopen").val() == "") {
-				alert("일요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#sunclose").val() == "") {
-				alert("일요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#holiopen").val() == "") {
-				alert("공휴일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#holiclose").val() == "") {
-				alert("공휴일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#holiday").val() == "") {
+				alert("공휴일 영업시간을 입력하세요");
+				$("#holiday").focus();
 				return false;
 			}
 		});
 	});
-*/
 </script>
 
 <style>
 	.card-title {
-		font-size: 1.8em;
+		font-size: 1.6em;
 	
 	}
 </style>
@@ -136,19 +87,19 @@
       
       <form class="forms-sample" method="post" action="<c:url value='PharmRegistComplete.do'/>">
         <div class="form-group row">
-          <label for="name" class="col-sm-1 col-form-label">약국명</label>
-          <div class="col-sm-6">
+          <label for="name" class="col-sm-1 col-form-label"><strong>약국명</strong></label>
+          <div class="col-sm-2">
             <input type="text" class="form-control" id="name" name="name" placeholder="약국명을 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">연락처</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="contact" name="contact" placeholder="연락처를 입력하세요"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>연락처</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="연락처를 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">
-          <label for="addr" class="col-sm-1 col-form-label">주소</label>
+          <label for="addr" class="col-sm-1 col-form-label"><strong>주소</strong></label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/>
           </div>
@@ -156,92 +107,77 @@
         
        <hr/> 
        
-	   <div class="form-group row">
-          <label for="contact" class="col-sm-10 col-form-label">영업시간
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          [ 쉬는 요일은 OPEN과 CLOSE를 '휴무'로 입력해주세요 ]</label>
+       <div class="form-group row">
+       		 <label for="addr" class="col-sm-1 col-form-label"><strong>약국종류</strong></label>
+       		 <div class="col-sm-6">
+		       	 <div class="form-radio">
+		          <label class="form-check-label">
+		            <input type="radio" name="pharm" class="form-check-input" value="all" checked> 일반약국
+		          </label>
+		         </div>
+		       	 <div class="form-radio">
+		          <label class="form-check-label">
+					 <input type="radio" name="pharm" class="form-check-input" value="night"> 심야약국		           
+		          </label>
+		         </div>
+	        </div>
        </div>
-	   
+       
+       <hr/>
+       
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label"></label>
-          <div class="col-sm-1 col-form-label">
-    	      <label for="contact" class="col-form-label">[ OPEN ]</label>
-          </div>
-          <div class="col-sm-1 col-form-label">
-	          <label for="contact" class="col-form-label">[ CLOSE ]</label>
+          <div class="col-sm-3 col-form-label">
+    	      <label for="contact" class="col-form-label">쉬는 요일은 <strong>휴무</strong>로 입력해주십시오.</label>
           </div>
         </div>
         
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">월요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="monopen" name="monopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="monclose" name="monclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>월요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="mon" name="mon" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">화요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="tueopen" name="tueopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="tueclose" name="tueclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>화요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="tue" name="tue" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">수요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="wedopen" name="wedopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="wedclose" name="wedclose" placeholder="24:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>수요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="wed" name="wed" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">목요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="thuopen" name="thuopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="thuclose" name="thuclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>목요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="thu" name="thu" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">금요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="friopen" name="friopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="friclose" name="friclose" placeholder="18:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>금요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="fri" name="fri" placeholder="09:00~18:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">토요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="satopen" name="satopen" placeholder="09:00"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="satclose" name="satclose" placeholder="13:00"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>토요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="sat" name="sat" placeholder="09:00~13:00"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">일요일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="sunopen" name="sunopen" placeholder="휴무"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="sunclose" name="sunclose" placeholder="휴무"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>일요일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="sun" name="sun" placeholder="휴무"/>
           </div>
         </div>
        <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label">공휴일</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="holiopen" name="holiopen" placeholder="휴무"/>
-          </div>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="holiclose" name="holiclose" placeholder="휴무"/>
+          <label for="contact" class="col-sm-1 col-form-label"><strong>공휴일</strong></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="holiday" name="holiday" placeholder="휴무"/>
           </div>
         </div>
       
