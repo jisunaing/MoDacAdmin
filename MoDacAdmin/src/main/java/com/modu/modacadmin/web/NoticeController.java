@@ -55,7 +55,7 @@ public class NoticeController {
 		//페이징을 위한 로직 끝]	
 		List<NoticeDto> list= service.selectList(map);
 		//페이징 문자열을 위한 로직 호출]
-		String pagingString=PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+ "NoticeList.do?");
+		String pagingString=PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+ "/NoticeList.do?");
 		//데이타 저장]		
 		model.addAttribute("list", list);
 		model.addAttribute("pagingString", pagingString);
@@ -71,17 +71,23 @@ public class NoticeController {
 	@RequestMapping(value = "NoticeWrite.do", method = RequestMethod.POST)
 	public String noticeWrite(NoticeDto dto) throws Exception {
 		service.insert(dto);
-		
 		// list로 이동
 		return "forward:NoticeList.do";
 	}
 	
 	
-	// notice list
+	// notice edit
 	@RequestMapping("NoticeEdit.do")
 	public String noticeEdit(NoticeDto dto) throws Exception {
 		service.update(dto);
 		return "forward:NoticeView.do?no="+dto.getNo();
+	}
+	
+	// notice delete
+	@RequestMapping("NoticeDelete.do")
+	public String noticeDelete(NoticeDto dto) throws Exception {
+		service.delete(dto);
+		return "forward:NoticeList.do";
 	}
 	
 	//상세보기]

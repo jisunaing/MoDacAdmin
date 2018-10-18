@@ -52,13 +52,13 @@
 		          </table>
 		        </div>
 		      </div>
+	        <div class="card-body" style="text-align: center;">
+				<div>${pagingString}</div>
+			</div>
 	       </div>
 	    </div>
 	</div>
-	<!-- 아래는 페이징 -->
-	<div class="row" style="text-align: center;margin-left: 50%;">
-		<div>${pagingString}</div>
-	</div>
+
 	<!-- 검색용 UI -->
 	<div class="row">
 		<div class="col-lg-12">

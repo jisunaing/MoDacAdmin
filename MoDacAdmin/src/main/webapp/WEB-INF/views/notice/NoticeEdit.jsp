@@ -39,15 +39,58 @@
 <script>
 //jQuery ui의 https://jqueryui.com/effect/참조함
 $(function(){
-	// $( ".stretch-card" ).effect( 'slide', {}, 1500 );	
+	// $( ".stretch-card" ).effect( 'slide', {}, 1500 );
+	
     $('#summernote').summernote({
-    	  height: 300,   //set editable area's height
-    	  codemirror: { // codemirror options
-    	    theme: 'monokai'
-    	  }
+   	  height: 300,  //set editable area's height
+   	  lang: 'ko-KR',
+   	  fontNames : [ '맑은고딕', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', ],
+		fontNamesIgnoreCheck : [ '맑은고딕' ],
+		focus: true,
+			
+		callbacks: {
+			onImageUpload: function(files, editor, welEditable) {
+	            for (var i = files.length - 1; i >= 0; i--) {
+	            	sendFile(files[i], this);
+	            }
+	        }
+		}
    	});
-});
+
+});///////////////////
+
+function sendFile(file, el) {
+    // 파일 전송을 위한 폼생성
+	data = new FormData();
+    data.append("uploadFile", file);
+    $.ajax({ // ajax를 통해 파일 업로드 처리
+        data : data,
+        type : "POST",
+        url : "ImageUpload.jsp",
+        cache : false,
+        contentType : false,
+        enctype: 'multipart/form-data',
+        processData : false,
+        success : function(data) { // 처리가 성공할 경우
+              // 에디터에 이미지 출력
+//         	$(editor).summernote('editor.insertImage', data.url);
+//         	editor.summernote(welEditable, data.url);
+		 console.log(data.url);
+		 console.log(data.fileName);
+		 
+//          $(el).summernote('editor.insertImage', data.url);
+		 $(el).summernote('editor.insertImage', "Upload/"+data.fileName);
+// 	     $('#imageBoard > ul').append('<li><img src="'+data.fileName+'" width="480" height="auto"/></li>');
+        }
+//  success: function(url) {
+//  $(el).summernote('editor.insertImage', url);
+//  $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+//}
+
+    });
+} // func
 </script>
+
 
 <div class="col-md-12 grid-margin stretch-card">
 	<div class="card">
