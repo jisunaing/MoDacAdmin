@@ -38,12 +38,6 @@ public class ChartController {
       System.out.println(listresult);
       model.addAttribute("reservation",listresult.get(0));
       
-      /*
-      model.addAttribute("a", list.get(0));
-      model.addAttribute("b", list.get(1));
-      model.addAttribute("c", list.get(2));
-      model.addAttribute("d", list.get(3));
-      */
 
       //나이대별 나누는 차트
       List<String> age = backendService.mainChartAge();

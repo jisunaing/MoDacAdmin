@@ -13,7 +13,7 @@
    (SELECT COUNT(*) FROM hospital)A,
    (SELECT COUNT(*) FROM pharmacy)B, 
    (SELECT COUNT(*) FROM genmember)C,
-   (SELECT COUNT(*) FROM PARTNERS where accept='Y')D
+   (SELECT COUNT(*) FROM PARTNERS)D
    FROM DUAL
    </select>
    <!-- 접수, 예약 수 얻어오기 -->
