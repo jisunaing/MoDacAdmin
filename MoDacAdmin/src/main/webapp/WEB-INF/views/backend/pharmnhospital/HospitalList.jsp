@@ -3,7 +3,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="<c:url value='/js/jquery-ui.min.css'/>">
+<script src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
 	.form-group {
@@ -20,6 +23,61 @@
 		text-align:center;
 	}
 </style>
+
+<script>
+
+$( function() {
+	
+	var hosno = null;
+	var pid = null;
+	
+	$(".btn-light").on( "click", function() {
+	      hosno = $(this).val();
+	      $("input[type=hidden]").val(hosno);
+	      $( "#dialog" ).dialog( "open" );
+	});	
+	 
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "fold",
+        duration: 500,
+      },
+      buttons: {
+          OK: function() {
+        	pid = $("#pid").val();
+			$('#frm').prop({
+				action:'<c:url value="HospitalUpdate.do"/>', 
+				method:'get'
+			});
+			$('#frm').submit();
+        	$("#pid").val('');
+          },
+          CLOSE: function() {
+            $( this ).dialog( "close" );
+            $("#pid").val('');
+          }
+      },
+      hide: {
+        effect: "drop",
+        duration: 500
+      },
+      width: "400px",
+      height: "auto"
+    });
+ 
+   
+} );
+ 
+</script>
+ 
+<div id="dialog" title="사용자 아이디 입력">
+	<form id="frm">
+    	<input type="text" name="pid" id="pid" placeholder="아이디를 입력하세요">
+    	<input type="hidden" name="hosno" id="hosno">
+    </form>
+</div>
+ 
 	<div class="row">
 		<div class="col-lg-12 grid-margin stretch-card">
 		    <div class="card">
@@ -43,7 +101,7 @@
 		            <tbody>
 		            <c:if test="${empty requestScope.records}" var="isEmpty">
 		            	<tr>
-		            		<td colspan="5"><strong>필요한 병원 정보를 먼저 입력하세요</strong>
+		            		<td colspan="5"><strong>필요한 병원 정보를 먼저 검색하십시오.</strong>
 		            	</tr>
 		            </c:if>
 		            <c:if test="${not isEmpty}">
@@ -53,7 +111,7 @@
 			                <td><a href="<c:url value='HospitalView.do?hosno=${records.hosno}'/>">${records.hosname}</a></td>
 			                <td>${records.hosphone}</td>
 			                <td>${records.hosaddr}</td>
-			                <td><a href="">제휴처리</a></td>
+			                <td><button class="btn-light" value="${records.hosno}">제휴처리</button></td>
 			              </tr>
 			            </c:forEach>
 		            </c:if>
@@ -61,17 +119,14 @@
 		          </table>
 		        </div>
 		      </div>
+		      <!-- 페이징 -->
+		      <div class="card-body" style="text-align: center;">
+				<div>${pagingString}</div>
+			  </div>
 	       </div>
 	    </div>
 	</div>
-	<!-- 페이징 -->
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="paging">
-				${pagingString}
-			</div>
-		</div>
-	</div>
+	
 	<!-- 검색용 UI -->
 	<div class="row">
 		<div class="col-lg-12">

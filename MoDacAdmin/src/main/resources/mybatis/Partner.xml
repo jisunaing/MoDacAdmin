@@ -159,9 +159,10 @@
 	
 	</select>
 	
-
-	
-	
-	
+	<!-- 재민 시작 : Partner의 hosno 수정 -->
+	<update id="UpdatePartnerHospital" parameterType="java.util.Map" >	
+	UPDATE partners SET hosno = #{hosno} WHERE hosno = #{phosno}		
+	</update>
+	<!-- 재민 끝 -->
 	
 </mapper>

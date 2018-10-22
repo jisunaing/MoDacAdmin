@@ -110,6 +110,12 @@ public class PartnerDao implements PartnerService {
 		return template.selectList("PartnerSubjectListAll",map);
 	}
 
+	// 재민 시작 : 제휴병원 hosno 변경
+	@Override
+	public int updatePartnerHospital(Map map) {
+		return template.update("UpdatePartnerHospital", map);
+	}
+	// 재민 끝
 
 	
 }

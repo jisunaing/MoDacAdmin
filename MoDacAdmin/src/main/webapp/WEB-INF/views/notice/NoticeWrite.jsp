@@ -20,24 +20,39 @@
 	margin-bottom:0px;
 	padding-bottom: 0px;
 }
+/* 섬머노트 때문에 깨지는 부분 수정 */
 .navbar.default-layout .navbar-brand-wrapper .navbar-brand {
     color: #ffffff;
     font-size: 1.5rem;
     line-height: 48px;
     margin-right: 0;
     padding: 0.25rem 0;
-    padding-top:15px;
+    height: 100%;
+    width: auto
 }
-.container-fluid .page-body-wrapper {
-	margin-top:-100px;
-	padding-top:-100px;
-	width: 0%;
-} 
+/* 아래 테스트용 적용 잘안됨 */
+/* .container-fluid .page-body-wrapper { */
+/* 	margin-top:-100px; */
+/* 	padding-top:-100px; */
+/* 	width: 0%; */
+/* }  */
+.container-scroller{
+/*  	padding-top:-500px;  */
+ 	margin-top:-170px;
+}
+#topnav{
+/*  	padding-top:1000px;  */
+/*  	margin-top: 100px  */
+}
+img{
+	max-width:1200px;
+	height:auto;
+}
 </style>
 <script>
 //jQuery ui의 https://jqueryui.com/effect/참조함
 $(function(){
-	// $( ".stretch-card" ).effect( 'slide', {}, 1500 );
+// 	$( ".stretch-card" ).effect( 'slide', {}, 1500 );
 	
     $('#summernote').summernote({
    	  height: 300,  //set editable area's height
@@ -84,11 +99,10 @@ function sendFile(file, el) {
 //  $(el).summernote('editor.insertImage', url);
 //  $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
 //}
-
     });
 } // func
 </script>
-
+<%@include file="/WEB-INF/template/Top.jsp" %>
 <div class="col-md-12 grid-margin stretch-card">
 	<div class="card">
 		<div class="card-body">

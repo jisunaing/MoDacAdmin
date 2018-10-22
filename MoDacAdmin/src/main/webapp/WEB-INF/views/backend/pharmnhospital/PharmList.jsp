@@ -70,16 +70,12 @@
 		          </table>
 		        </div>
 		      </div>	
+			  <!-- 페이징 -->
+		      <div class="card-body" style="text-align: center;">
+				<div>${pagingString}</div>
+			  </div>
 	       </div>
 	    </div>
-	</div>
-	<!-- 페이징 -->
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="paging">
-				${pagingString}
-			</div>
-		</div>
 	</div>
 	<!-- 검색용 UI -->
 	<div class="row">

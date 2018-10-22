@@ -7,17 +7,16 @@
 
 <script>
 /* 유효성 체크 */
-/*
 	$(function() {
 		$('form').on('submit', function() {
 			if ($("#name").val() == "") {
-				alert("약국명을 입력하세요");
+				alert("병원명을 입력하세요");
 				$("#name").focus();
 				return false;
 			}
-			if ($("#contact").val() == "") {
+			if ($("#phone").val() == "") {
 				alert("연락처를 입력하세요");
-				$("#contact").focus();
+				$("#phone").focus();
 				return false;
 			}
 			if ($("#addr").val() == "") {
@@ -25,49 +24,52 @@
 				$("#addr").focus();
 				return false;
 			}
-			if ($("#monopen").val() == "") {
-				alert("월요일 오픈시간을 선택하세요");
-				$("#monopen").focus();
+			if ($("input:checkbox[name='subject']").is(":checked") == false) {
+				alert("진료과목을 한 개 이상 선택하세요");
 				return false;
 			}
-			if ($("#tueopen").val() == "") {
-				alert("화요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#mon").val() == "") {
+				alert("월요일 진료시간을 입력하세요");
+				$("#mon").focus();
 				return false;
 			}
-			if ($("#wedopen").val() == "") {
-				alert("수요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#tue").val() == "") {
+				alert("화요일 진료시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#thuopen").val() == "") {
-				alert("목요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#wed").val() == "") {
+				alert("수요일 진료시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#friopen").val() == "") {
-				alert("금요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#thu").val() == "") {
+				alert("목요일 진료시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#satopen").val() == "") {
-				alert("토요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#fri").val() == "") {
+				alert("금요일 진료시간을 입력하세요");
+				$("#fri").focus();
 				return false;
 			}
-			if ($("#sunopen").val() == "") {
-				alert("일요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sat").val() == "") {
+				alert("토요일 진료시간을 입력하세요");
+				$("#sat").focus();
 				return false;
 			}
-			if ($("#holiopen").val() == "") {
-				alert("공휴일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sun").val() == "") {
+				alert("일요일 진료시간을 입력하세요");
+				$("#sun").focus();
+				return false;
+			}
+			if ($("#holiday").val() == "") {
+				alert("공휴일 진료시간을 입력하세요");
+				$("#holiday").focus();
 				return false;
 			}
 		});
 	});
-*/
 </script>
 
 <style>
@@ -94,9 +96,9 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="contact" class="col-sm-1 col-form-label"><strong>연락처</strong></label>
+          <label for="phone" class="col-sm-1 col-form-label"><strong>연락처</strong></label>
           <div class="col-sm-2">
-            <input type="text" class="form-control" id="contact" name="phone" placeholder="연락처를 입력하세요"/>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="연락처를 입력하세요"/>
           </div>
         </div>
         <div class="form-group row">

@@ -28,10 +28,12 @@ th {
 							<td>설명입니다</td>
 						</tr>
 						<tr>
-							<th>이미지</th>
-							<td>XXX.png</td>
+							<td style="font-weight: bold" colspan="2">이미지</th>
 						</tr>
 					</table>
+				</div>
+				<div>
+					${img }
 				</div>
 				<!-- 추가용 버튼  시작-->
 				<div style="padding-top: 3%; padding-left: 70%">
@@ -75,14 +77,9 @@ th {
 							<td>May 15, 2015</td>
 						</tr>
 						<tr>
-							<td>2</td>
-							<td>제목</td>	
-							<td>July 1, 2015</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>제목</td>	
-							<td>Apr 12, 2015</td>
+							<td>
+							<td>
+							<td>
 						</tr>
 					</tbody>
 				</table>

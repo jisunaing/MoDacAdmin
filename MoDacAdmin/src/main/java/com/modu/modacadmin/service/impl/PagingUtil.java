@@ -38,7 +38,7 @@ public class PagingUtil {
 			
 		if(intTemp <= totalPage){
 
-			pagingStr+="<a href='"+page+"nowPage="+intTemp+"'><span style='Color:gray'>▶</span></a>&nbsp;<a href='"+page+"nowPage="+totalPage+"'><span style='Color:gray'>▶▶</span></a>"; 
+			pagingStr+="<a href='"+page+"nowPage="+intTemp+"'><span>▶</span></a>&nbsp;<a href='"+page+"nowPage="+totalPage+"'><span>▶▶</span></a>"; 
 
 				   
 		}
@@ -57,17 +57,8 @@ public class PagingUtil {
 
 		//처음 및 이전을 위한 로직
 		if(intTemp != 1){
-			pagingStr+="<li>\r\n" + 
-					"<a href='"+page+"nowPage=1'>\r\n" + 
-					"<span >&laquo;</span>\r\n" + 
-					"</a>\r\n" + 
-					"</li>\r\n" + 
-					"<li >\r\n" + 
-					"<a href='"+page+"nowPage="+(intTemp -blockPage)+"' >\r\n" + 
-					"<span>&lsaquo;</span>\r\n" + 
-					"</a>\r\n" + 
-					"</li>";   
-			
+			pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='"+page+"nowPage=1'><span style='Color:gray'>처음\r\n</span></a></button></br/>\r\n" + 
+					   "<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='"+page+"nowPage="+(intTemp-blockPage)+"'><span style='Color:gray'>이전</span></a></button></br/>\r\n";
 		}
 		
 		//페이지 표시 제어를 위한 변수
@@ -78,7 +69,7 @@ public class PagingUtil {
 		while(blockCount <= blockPage && intTemp <= totalPage){  // 페이지 오버 를 체크
 				//현재 페이지를 의미함
 			if(intTemp == nowPage){  
-				pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='#'><span style='Color:red'>"+intTemp+"</a>	</span></button>";
+				pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='#'><span style='Color:red'>"+intTemp+"</a></span></button>";
 			}
 		     else
 				pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='"+page+"nowPage="+intTemp+"'><span style='Color:gray'>"+intTemp+"</a></span></button>";
@@ -91,16 +82,8 @@ public class PagingUtil {
 		//다음 및 마지막을 위한 로직
 			
 		if(intTemp <= totalPage){
-			pagingStr+="<li>\r\n" + 
-					"<a href='"+page+"nowPage="+intTemp+"'>\r\n" + 
-					"<span>&rsaquo;</span>\r\n" + 
-					"</a>\r\n" + 
-					"</li>\r\n" + 
-					"<li>\r\n" + 
-					"<a href='"+page+"nowPage="+totalPage+"' >\r\n" + 
-					"<span >&raquo;</span>\r\n" + 
-					"</a>\r\n" + 
-					"</li>";
+			pagingStr+="<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='"+page+"nowPage="+intTemp+"'><span style='Color:gray'>다음</span></a></button>"+ 
+					"<button type=\"button\" class=\"btn btn-outline-secondary\"><a href='"+page+"nowPage="+totalPage+"' ><span style='Color:gray'>끝</span></a></button>\r\n";
 							   
 		}
 		pagingStr+="</div>";

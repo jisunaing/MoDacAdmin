@@ -13,10 +13,14 @@
 %>
 <style>
 </style>
-<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-  <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+<nav  style="height: 80px;" id="topnav"class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<!--  style="height: 80px" -->
+  <div style="background: transparent;" class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+<!--   style="background: transparent;" -->
     <a class="navbar-brand brand-logo" href="<c:url value='/index.do'/>">
-     <img src="<c:url value='images/logo.svg'/>" alt="logo" />
+     <img style="height: 100%" src="<c:url value='images/logo3.png'/>" alt="logo" />
+<%--      <img style="height: 95%;margin-top: 5px;" src="<c:url value='images/logo2.png'/>" alt="logo" /> --%>
+<%--      <img style="height: 100%" src="<c:url value='images/logo.png'/>" alt="logo" /> --%>
    </a>
    <a class="navbar-brand brand-logo-mini" href="<c:url value='/index.do'/>">
      <img src="<c:url value='images/logo-mini.svg'/>" alt="logo" />

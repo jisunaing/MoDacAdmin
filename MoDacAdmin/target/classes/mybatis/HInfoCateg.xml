@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis/HInfoCateg">
+	<!--  
+	table_name_HEALTHINFOCATEGORY
+	sequnce_name_SEQ_HEALTHINFOCATEGORY
+	private String categno;
+	private String explanation;
+	private String categname;
+	private String categimage;
+	-->
+	<resultMap id="HInfoCategDtoResult" type="hinfocategDto">
+		<result property="categno" column="categno"/>
+		<result property="explanation" column="explanation"/>
+		<result property="categname" column="categname"/>
+		<result property="categimage" column="categimage"/>
+	</resultMap>
+	
+	<!-- 쿼리 작성 -->
+	
+	<!-- insert -->
+	<insert id="hinfocategInsert" parameterType="hinfocategDto">
+		INSERT INTO healthinfocategory(categno, explanation, categname, categimage) VALUES(SEQ_HEALTHINFOCATEGORY.NEXTVAL, #{explanation}, #{categname}, #{categimage})
+	</insert>
+	
+	<!-- 리스트 -->
+	<select id="hinfocategList" parameterType="java.util.Map" resultType="hinfocategDto">
+		SELECT * FROM (SELECT T.*,ROWNUM RW 
+		FROM 
+		(SELECT * FROM healthinfocategory 
+			<if test="searchColumn != null">
+				WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%' 
+			</if>
+		ORDER BY categno DESC) T) 
+		WHERE RW BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<!-- 상세보기 -->
+	<select id="noticeOne" resultType="noticeDto" parameterType="java.util.Map">
+		SELECT * FROM notice 
+		WHERE no=#{no} 
+	</select>
+	
+	<!-- 페이징위한 레코드 개수 얻기 -->
+	<select id="hinfocategTotal" resultType="Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM healthinfocategory
+		<if test="searchColumn != null">
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%' 
+		</if>
+	</select>
+
+	<!-- delete -->	
+	<delete id="noticeDelete" parameterType="noticeDto">
+		DELETE notice WHERE no = #{no}
+	</delete>
+	
+	<!-- update -->
+	<update id="noticeUpdate" parameterType="noticeDto">
+		UPDATE notice SET title = #{title}, content = #{content}
+		WHERE no = #{no}
+	</update>
+</mapper>

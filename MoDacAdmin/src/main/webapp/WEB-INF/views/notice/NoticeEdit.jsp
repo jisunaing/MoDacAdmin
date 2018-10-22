@@ -34,6 +34,10 @@
 	margin-top:-100px;
 	padding-top:-100px;
 	width: 0%;
+}
+img{
+	max-width:1200px;
+	height:auto;
 } 
 </style>
 <script>

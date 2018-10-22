@@ -1,10 +1,12 @@
 package com.modu.modacadmin.web;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.basic.BasicTreeUI.SelectionModelPropertyChangeHandler;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +19,7 @@ import com.modu.modacadmin.service.HospitalDto;
 import com.modu.modacadmin.service.HospitalService;
 import com.modu.modacadmin.service.NightPharmacyDto;
 import com.modu.modacadmin.service.NightPharmacyService;
+import com.modu.modacadmin.service.PartnerService;
 import com.modu.modacadmin.service.PharmacyDto;
 import com.modu.modacadmin.service.PharmacyService;
 import com.modu.modacadmin.service.impl.PagingUtil;
@@ -30,6 +33,8 @@ public class CommonManagingController {
 	private NightPharmacyService serviceNPH;
 	@Resource(name = "hospitalService")
 	private HospitalService serviceHOS;
+	@Resource(name = "partnerService")
+	private PartnerService servicePS;
 
 	@Value("${PAGESIZE}")
 	private int pageSize;
@@ -246,11 +251,8 @@ public class CommonManagingController {
 	@RequestMapping("HospitalEditComplete.do")
 	public String hospitalEditComplete(@RequestParam Map map, HttpServletRequest req, Model model) throws Exception {
 		
-		
-		
 		serviceHOS.update(map);
 		serviceHOS.deleteSubject(map);
-		
 		
 		String[] selectsubject = req.getParameterValues("subject");
 		
@@ -367,7 +369,13 @@ public class CommonManagingController {
 	
 	// [병원 검색]
 	@RequestMapping("HospitalSearch.do")
-	public String searchHospital(@RequestParam Map map, Model model) throws Exception {
+	public String searchHospital(@RequestParam Map map, Model model, @RequestParam(required = false, defaultValue = "1") int nowPage, HttpServletRequest req) throws Exception {
+		
+		int totalRecordCount = 0;
+		int start = 0;
+		int end = 0;
+		String pagingString = null;
+		String url = null;
 		
 		if (map.get("hosname") == null) {
 			map.put("hosname", "");
@@ -375,14 +383,127 @@ public class CommonManagingController {
 		if (map.get("hosaddr") == null) {
 			map.put("hosaddr", "");
 		}
+		if (map.get("hosname").toString().equals("") && map.get("hosaddr").toString().equals("")) {
+
+			url = "/HospitalSearch.do?";
+
+		} else if (map.get("hosaddr").toString().equals("")) {
+
+			String hosname = map.get("hosname").toString();
+			url = "/HospitalSearch.do?hosname=" + hosname + "&";
+
+		} else if (map.get("hosname").toString().equals("")) {
+
+			String hosaddr = map.get("hosaddr").toString();
+			url = "/HospitalSearch.do?hosaddr=" + hosaddr + "&";
+
+		} else {
+
+			String hosname = map.get("hosname").toString();
+			String hosaddr = map.get("hosaddr").toString();
+			url = "/HospitalSearch.do?hosname=" + hosname + "&hosaddr=" + hosaddr + "&";
+		}
+		totalRecordCount = serviceHOS.getTotalRecord(map);
+		start = (nowPage-1)*pageSize+1;
+		end = nowPage*pageSize;
+		map.put("start", start);
+		map.put("end", end);
+		pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,
+				req.getContextPath() + url);
 		
 		List<HospitalDto> records = serviceHOS.selectList(map);
-		
 		model.addAttribute("records",records);
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("pageSize", pageSize);
 		
 		return "backend/pharmnhospital/HospitalList.tiles";
 	}
 
+	
+	// [제휴처리 페이지로 이동]
+	@RequestMapping("HospitalUpdate.do")
+	public String updateHospital(@RequestParam Map map, Model model, HttpServletResponse resp) throws Exception {	
+		
+		System.out.println(map.get("pid"));
+		System.out.println(map.get("hosno"));
+		
+		
+		// 사용자 측에서 입력한 병원 데이터 
+		HospitalDto partnerInfo = serviceHOS.selectPartnerOne(map);
+		if(partnerInfo == null) {
+			
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>");
+			out.println("alert('등록된 아이디가 아닙니다.');");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			
+		} else {
+			
+			map.put("partnerHosno", partnerInfo.getHosno());
+			List<HospitalDto> partnerSubject = serviceHOS.partnerSubjectList(map);
+			
+			StringBuffer partnerBuf = new StringBuffer();
+			for(HospitalDto dto : partnerSubject) {
+				partnerBuf.append(dto.getSubname()+" ");
+			}
+			model.addAttribute("partnerInfo", partnerInfo);
+			model.addAttribute("partnerSubjects", partnerBuf.toString());
+			
+			// 기존에 있던 병원 데이터
+			HospitalDto originalInfo = serviceHOS.selectOne(map);
+			List<HospitalDto> originalSubject = serviceHOS.subjectList(map);
+			StringBuffer originalBuf = new StringBuffer();
+			for(HospitalDto dto : originalSubject) {
+				originalBuf.append(dto.getSubname()+" ");
+			}
+			model.addAttribute("originalInfo", originalInfo);
+			model.addAttribute("originalSubjects", originalBuf.toString());
+			
+		}
+		
+		return "backend/pharmnhospital/HospitalUpdate.tiles";
+		
+	
+	}
+	
+	// [제휴처리 완료 - 사용자 정보 적용]
+	@RequestMapping("HospitalUpdateToPartner.do")
+	public String updateCompleteHospitalToPartner(@RequestParam Map map) throws Exception {	
+		
+		/*
+		 * 기존 정보를 사용하지 않고, 사용자가 입력한 정보를 사용하고자 할 경우
+		 * 기존 정보를 삭제함
+		 * 
+		 */
+		
+		serviceHOS.deleteSubject(map);
+		serviceHOS.delete(map);
+		
+		return "backend/pharmnhospital/HospitalList.tiles";
+	}
+	
+	// [제휴처리 완료 - 기존 정보 적용]
+	@RequestMapping("HospitalUpdateToOriginal.do")
+	public String updateCompleteHospitalToOriginal(@RequestParam Map map) throws Exception {	
+		
+		/*
+		 * 사용자가 입력한 정보를 사용하지 않고, 기존에 등록되어 있는 정보를 사용하는 경우
+		 * 사용자가 등록한 hosno를 기존의 hosno로 수정한 후
+		 * 사용자가 등록한 병원 정보를 삭제함
+		 */
+		
+		servicePS.updatePartnerHospital(map);
+		serviceHOS.deletePartnerSubject(map);
+		serviceHOS.deletePartner(map);
+		
+		return "backend/pharmnhospital/HospitalList.tiles";
+	}
+	
 	
 	
 	// ▲ 병원

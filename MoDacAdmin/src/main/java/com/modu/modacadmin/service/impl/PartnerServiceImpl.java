@@ -101,7 +101,12 @@ public class PartnerServiceImpl implements PartnerService {
 		return dao.subjectListAll(map);
 	}
 
-	
+	// 재민시작
+	@Override
+	public int updatePartnerHospital(Map map) {
+		return dao.updatePartnerHospital(map);
+	}
+	// 재민끝
 
 	
 

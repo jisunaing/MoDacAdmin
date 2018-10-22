@@ -69,5 +69,25 @@ public class HospitalServiceImpl implements HospitalService{
 	public int updateSubject(Map map) {
 		return dao.updateSubject(map);
 	}
-	
+
+	@Override
+	public List<HospitalDto> partnerSubjectList(Map map) {
+		return dao.partnerSubjectList(map);
+	}
+
+	@Override
+	public HospitalDto selectPartnerOne(Map map) {
+		return dao.selectPartnerOne(map);
+	}
+
+	@Override
+	public int deletePartner(Map map) {
+		return dao.deletePartner(map);
+	}
+
+	@Override
+	public int deletePartnerSubject(Map map) {
+		return dao.deletePartnerSubject(map);
+	}
+
 }

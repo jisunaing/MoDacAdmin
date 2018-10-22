@@ -40,10 +40,9 @@ public interface PartnerService {
 	int getTotalWithdrawalList(Map map); //제휴탈퇴 리스트쪽
 	int getTotalPartnerList(Map map); //제휴회원 전체 리스트쪽
 	
-	
-	
-	
-	
-	
+
+	// 재민 : Partner의 hosno 수정
+	int updatePartnerHospital(Map map);
+	// 재민 끝
 	
 }///PartnerService

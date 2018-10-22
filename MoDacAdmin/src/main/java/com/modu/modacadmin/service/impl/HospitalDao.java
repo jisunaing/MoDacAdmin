@@ -70,5 +70,26 @@ public class HospitalDao implements HospitalService {
 	public int updateSubject(Map map) {
 		return template.insert("SubjectUpdate", map);
 	}
+
+	@Override
+	public List<HospitalDto> partnerSubjectList(Map map) {
+		return template.selectList("PartnerSubjectList", map);
+	}
+
+	@Override
+	public HospitalDto selectPartnerOne(Map map) {
+		return template.selectOne("PartnerOne", map);
+	}
+	
+	@Override
+	public int deletePartner(Map map) {
+		return template.delete("DeletePartner", map);
+	}
+
+	@Override
+	public int deletePartnerSubject(Map map) {
+		return template.delete("DeletePartnerSubject", map);
+	}
+
 	
 }

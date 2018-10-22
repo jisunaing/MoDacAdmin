@@ -56,7 +56,7 @@ $(function(){
 		
 		<!-- partial -->
 
-		<div class="container-fluid page-body-wrapper">
+		<div class="container-fluid page-body-wrapper" style="padding-top: 80px">
 			<!-- partial:partials/_sidebar.html -->
 			<!--사이드들어감-->
 			<tiles:insertAttribute name="Side"/>

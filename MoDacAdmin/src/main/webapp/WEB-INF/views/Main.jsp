@@ -423,7 +423,7 @@
     <!-- partial:partials/_navbar.html -->
    <jsp:include page="/WEB-INF/template/Top.jsp"/>
     <!-- partial -->
-   <div class="container-fluid page-body-wrapper">
+   <div style="padding-top:80px" class="container-fluid page-body-wrapper">
       <jsp:include page="/WEB-INF/template/Side.jsp"/>
       <!-- partial -->
       <div class="main-panel">

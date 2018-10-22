@@ -7,112 +7,69 @@
 
 <script>
 /* 유효성 체크 */
-/*
 	$(function() {
 		$('form').on('submit', function() {
-			if ($("#name").val() == "") {
-				alert("약국명을 입력하세요");
-				$("#name").focus();
+			if ($("#hosname").val() == "") {
+				alert("병원명을 입력하세요");
+				$("#hosname").focus();
 				return false;
 			}
-			if ($("#contact").val() == "") {
+			if ($("#hosphone").val() == "") {
 				alert("연락처를 입력하세요");
-				$("#contact").focus();
+				$("#hosphone").focus();
 				return false;
 			}
-			if ($("#addr").val() == "") {
+			if ($("#hosaddr").val() == "") {
 				alert("주소를 입력하세요");
-				$("#addr").focus();
+				$("#hosaddr").focus();
 				return false;
 			}
-			if ($("#pass").val() == "") {
-				alert("비밀번호를 입력하세요");
-				$("#pass").focus();
+			if ($("input:checkbox[name='subject']").is(":checked") == false) {
+				alert("진료과목을 한 개 이상 선택하세요");
 				return false;
 			}
-			if ($("#monopen").val() == "") {
-				alert("월요일 오픈시간을 선택하세요");
-				$("#monopen").focus();
+			if ($("#mon").val() == "") {
+				alert("월요일 진료시간을 입력하세요");
+				$("#mon").focus();
 				return false;
 			}
-			if ($("#monclose").val() == "") {
-				alert("월요일 마감시간을 선택하세요");
-				$("#monclose").focus();
+			if ($("#tue").val() == "") {
+				alert("화요일 진료시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#tueopen").val() == "") {
-				alert("화요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#wed").val() == "") {
+				alert("수요일 진료시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#tueclose").val() == "") {
-				alert("화요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#thu").val() == "") {
+				alert("목요일 진료시간을 입력하세요");
+				$("#tue").focus();
 				return false;
 			}
-			if ($("#wedopen").val() == "") {
-				alert("수요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#fri").val() == "") {
+				alert("금요일 진료시간을 입력하세요");
+				$("#fri").focus();
 				return false;
 			}
-			if ($("#wedclose").val() == "") {
-				alert("수요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sat").val() == "") {
+				alert("토요일 진료시간을 입력하세요");
+				$("#sat").focus();
 				return false;
 			}
-			if ($("#thuopen").val() == "") {
-				alert("목요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#sun").val() == "") {
+				alert("일요일 진료시간을 입력하세요");
+				$("#sun").focus();
 				return false;
 			}
-			if ($("#thuclose").val() == "") {
-				alert("목요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#friopen").val() == "") {
-				alert("금요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#friclose").val() == "") {
-				alert("금요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#satopen").val() == "") {
-				alert("토요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#satclose").val() == "") {
-				alert("토요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#sunopen").val() == "") {
-				alert("일요일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#sunclose").val() == "") {
-				alert("일요일 마감시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#holiopen").val() == "") {
-				alert("공휴일 오픈시간을 선택하세요");
-				$("#tueopen").focus();
-				return false;
-			}
-			if ($("#holiclose").val() == "") {
-				alert("공휴일 마감시간을 선택하세요");
-				$("#tueopen").focus();
+			if ($("#holiday").val() == "") {
+				alert("공휴일 진료시간을 입력하세요");
+				$("#holiday").focus();
 				return false;
 			}
 		});
 	});
-*/
 </script>
 
 <style>
