@@ -23,7 +23,7 @@
 <%--      <img style="height: 100%" src="<c:url value='images/logo.png'/>" alt="logo" /> --%>
    </a>
    <a class="navbar-brand brand-logo-mini" href="<c:url value='/index.do'/>">
-     <img src="<c:url value='images/logo-mini.svg'/>" alt="logo" />
+     <img style="padding-left:10px;width: 80%;height: 80%" src="<c:url value='images/logosm.png'/>" alt="logo" />
    </a>
  </div>
  <div class="navbar-menu-wrapper d-flex align-items-center">

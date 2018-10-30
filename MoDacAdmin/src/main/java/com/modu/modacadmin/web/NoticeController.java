@@ -63,7 +63,6 @@ public class NoticeController {
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("nowPage", nowPage);
 		
-		System.out.println("병원 목록 페이지 끝");
 		return "notice/NoticeList.tiles";
 	}
 	

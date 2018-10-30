@@ -1,0 +1,13 @@
+th {
+	width: 30%
+}
+
+#imagespace #img_resize { /* 이미지 크기 지정 */
+	max-width: 665px;
+   	height: auto;
+}
+
+#imagespace {
+	padding-top: 10px;
+	padding-left: 3px
+}

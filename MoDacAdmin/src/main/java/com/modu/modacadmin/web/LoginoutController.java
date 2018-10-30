@@ -18,13 +18,11 @@ public class LoginoutController {
 	@Resource(name="managersService")
 	private ManagersService service;
 
-	// �α���������
 	@RequestMapping("AdminLogin.do")
 	public String login() throws Exception {
 		return "loginout/Login";
 	} // Login
 	
-	// �α��� ó��
 	@RequestMapping("LoginProcess.do")
 	public String loginProcess(@RequestParam Map map,HttpSession session, Model model) throws Exception{
 		boolean flag = service.isManager(map);
@@ -40,7 +38,6 @@ public class LoginoutController {
 		return "forward:index.do";
 	}
 	
-	// �α׾ƿ�
 	@RequestMapping("Logout.do")
 	public String logout(HttpSession session) throws Exception {
 		session.removeAttribute("mid");

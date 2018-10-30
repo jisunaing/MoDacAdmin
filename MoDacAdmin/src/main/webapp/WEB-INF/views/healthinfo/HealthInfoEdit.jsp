@@ -2,39 +2,88 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- include libraries(jQuery, bootstrap) -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+<!-- include libraries(jQuery, bootstrap) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+
+<link rel="stylesheet" href="<c:url value='css/summernotearea.css'/>">
 <style>
 	.form-control{
 		border-width: 2px;
 	}
 </style> 
+<script>
+//jQuery ui의 https://jqueryui.com/effect/참조함
+$(function(){
+//	$( ".stretch-card" ).effect( 'slide', {}, 1500 );
+$('#summernote').summernote({
+	  height: 300,  //set editable area's height
+	  lang: 'ko-KR',
+	  fontNames : [ '맑은고딕', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', ],
+		fontNamesIgnoreCheck : [ '맑은고딕' ],
+		focus: true,
+		callbacks: {
+			onImageUpload: function(files, editor, welEditable) {
+	           for (var i = files.length - 1; i >= 0; i--) {
+	           	sendFile(files[i], this);
+	           }
+	       }
+		} // callbacks
+	}); // $ summernote
+});  // $ func
+
+function sendFile(file, el) {
+  // 파일 전송을 위한 폼생성
+	data = new FormData();
+  data.append("uploadFile", file);
+  $.ajax({ // ajax를 통해 파일 업로드 처리
+      data : data,
+      type : "POST",
+      url : "ImageUpload.jsp",
+      cache : false,
+      contentType : false,
+      enctype: 'multipart/form-data',
+      processData : false,
+      success : function(data) { // 처리가 성공할 경우
+		 console.log(data.url);
+		 console.log(data.fileName);
+		 // 얻어온 이미지파일의 경로를 이용해서 에디터에 이미지 뿌려줌
+		 console.log('summernote_img: '+"Upload/"+data.fileName);
+		 $(el).summernote('editor.insertImage', "Upload/"+data.fileName);
+      }
+  });
+} // func
+</script>
 <div class="col-md-12 grid-margin stretch-card">
 	<div class="card">
 		<div class="card-body">
 			<h1>건강정보 상세내용 수정</h1>
 			<br>
-			<form class="forms-sample" action="<c:url value='healthinfoView.do'/>">
+		<form class="forms-sample" action="<c:url value='healthinfoEdit.do?categno=${record.categno}&healthinfono=${record.healthinfono }'/>" method="post" >
+				<input type="hidden" name="image" value='none'/>
+				<input type="hidden" name="hinfo" value="hinfo"/> 
 				<div class="form-group">
-					<label for="exampleInputName1">제목</label> 
-					<input type="text" class="form-control col-md-4" id="exampleInputName1" placeholder="제목을 입력하세요" value="어린이 시력, 왜 약해 지나">
+					<label for="exampleInputName1">제목</label>
+					<br/>
+					<input type="text" name="title" class="form-control col-md-8"  placeholder="${record.title }" value="${record.title }">
+					<br/>
 				</div>
 				<div class="form-group">
-					<label for="exampleTextarea1">내용</label>
-					<textarea class="form-control col-md-10" id="exampleTextarea1" rows="20" placeholder="내용을 입력하세요">
-						자녀 손을 잡고 안과를 처음 찾은 때가 언제였는가?
-						자녀가 칠판 글씨가 잘 보이지 않는다고 호소해야 겨우 안과를 찾았는가?
-						그런 경우에도 안과에는 들르지 않고 안경점으로 가 안경 맞춰주기에 급급했는가?
-						자녀가 초등학교에 들어간 뒤에야 안과를 찾는다면 70점, 자녀에게 첫 안경을 맞춰줄 때조차 안과를 거치지 않고 안경점으로 직행하는 부모라면 50점도 채 못 받을 것이다. 자녀의 눈 건강 관리 항목에서는 말이다.
-						
-						아이들의 눈 건강이 점점 나빠지고 있다. 대한안과학회에서 서울․충북 지역 어린이 2천9백72명(만3~6세)의 눈 질환을 정밀 검사한 결과, 굴절 이상이 75.3%로 가장 많았다. 약시 18.3%, 사시 7.4%, 백내장과 같은 전안부 이상이 
-					</textarea>
+					<br/>
+					<label for=".summernote">내용</label>
+					<br/>
+					<textarea name="content" id="summernote" placeholder="${record.content }">${record.content }</textarea>
 				</div>
-				<div class="form-group">
-					<!-- 파일명 저장안되는데 어쩜?! -->
-					<label>이미지</label> <br>
-					<input type="file" name="fileupload" value="fileupload" id="fileupload"> 
-				</div>
-				<button type="submit" class="btn btn-success mr-2">등록하기</button>
-				
+				<button type="submit" class="btn btn-success mr-2">수정완료</button>
 			</form>
 		</div>
 	</div>

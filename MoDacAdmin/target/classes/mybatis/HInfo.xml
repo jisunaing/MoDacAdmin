@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+HEALTHINFO
+ HEALTHINFONO            NOT NULL NUMBER
+ CATEGNO                 NOT NULL NUMBER
+ TITLE                   NOT NULL NVARCHAR2(30)
+ CONTENT                          NVARCHAR2(2000)
+ POSTDATE                         DATE
+ IMAGE                            NVARCHAR2(100)
+-->
+<mapper namespace="mybatis/HInfo">
+	<!-- 마이바티스는 resultMap사용 시 column속성 필수 -->
+	<!-- type속성은 configuration.xml에 등록한 자바빈의 별칭임 -->
+	<resultMap id="HInfoDtoResult" type="hInfoDto">
+		<result property="healthinfono" column="healthinfono"/>
+		<result property="categno" column="categno"/>
+		<result property="title" column="title"/>
+		<result property="cotent" column="cotent"/>
+		<result property="postdate" column="postdate"/>
+		<result property="image" column="image"/>
+	</resultMap>
+	
+	<!-- 쿼리 작성 -->
+	
+	<!--
+		SELCT
+		SQL> select c.categno, healthinfono
+		  2  from healthinfo h
+		  3  join healthinfocategory c
+		  4  on h.categno  = c.categno
+		  5  where healthinfono = 1
+		  6  ;
+  	-->
+	<select id="hinfoList" parameterType="java.util.Map" resultType="hInfoDto">
+		SELECT * FROM (SELECT T.*,ROWNUM RW 
+		FROM 
+		(SELECT h.* FROM healthinfo h  
+			JOIN healthinfocategory c  
+			ON h.categno = c.categno  
+			WHERE h.categno = #{categno}  
+			<if test="searchColumn != null">
+				AND ${searchColumn} LIKE '%' || #{searchWord} || '%'   
+			</if>
+		ORDER BY healthinfono DESC) T)  
+		WHERE RW BETWEEN #{start} AND #{end}   
+	</select>
+	
+	<!-- 
+		SELECT ONE
+		SQL> SELECT H.* FROM HEALTHINFO H
+		  2  JOIN HEALTHINFOCATEGORY C
+		  3  ON H.CATEGNO = C.CATEGNO
+		  4  WHERE H.CATEGNO = 1 AND HEALTHINFONO = 1;
+	-->
+	<select id="hinfoOne" resultType="hInfoDto" parameterType="java.util.Map">
+		SELECT H.* FROM healthinfo h   
+		JOIN healthinfocategory c  
+		ON h.categno = c.categno  
+		WHERE h.categno = #{categno} AND healthinfono = #{healthinfono}  
+	</select>
+
+	<select id="hinfoTotal" resultType="Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM healthinfo h
+		JOIN healthinfocategory c  
+		ON h.categno = c.categno  
+		WHERE h.categno = #{categno}  
+		<if test="searchColumn != null">
+			AND ${searchColumn} LIKE '%' || #{searchWord} || '%' 
+		</if>
+	</select>
+	
+	<insert id="hinfoInsert" parameterType="hInfoDto">
+<!-- 		INSERT INTO healthinfo(healthinfono, categno, title, content, postdate, image) VALUES(SEQ_HEALTHINFO.NEXTVAL, #{categno}, #{title}, #{content}, SYSDATE, #{image}) -->
+		INSERT INTO healthinfo(healthinfono, categno, title, content, postdate, image) VALUES(SEQ_HEALTHINFO.NEXTVAL, #{categno}, #{title}, #{content}, SYSDATE, #{image})
+	</insert>
+	
+	<!-- 
+		delete
+		DELETE healthinfo WHERE healthinfono = 3 and categno = 4
+	-->
+	<delete id="hinfoDelete" parameterType="hInfoDto">
+	DELETE healthinfo WHERE healthinfono = #{healthinfono} AND categno = #{categno}
+	</delete>
+	
+	<!--
+		update
+		UPDATE healthinfo SET title = 'xx' WHERE healthinfono = 5 AND categno = 4; 
+	-->
+	<update id="hinfoUpdate" parameterType="hInfoDto">
+		UPDATE healthinfo SET title = #{title}, content = #{content}, image = #{image} WHERE healthinfono = #{healthinfono} AND categno = #{categno}
+	</update>
+</mapper>

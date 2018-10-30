@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.modu.modacadmin.service.ManagersDto" alias="managersDto"/>
 		<typeAlias type="com.modu.modacadmin.service.TestDto" alias="testDto"/>
+		<typeAlias type="com.modu.modacadmin.service.HInfoDto" alias="hInfoDto"/>
 		<typeAlias type="com.modu.modacadmin.service.HInfoCategDto" alias="hinfocategDto"/>
 		<typeAlias type="com.modu.modacadmin.service.NoticeDto" alias="noticeDto"/>
 		<typeAlias alias="HospitalDto" type="com.modu.modacadmin.service.HospitalDto"/>
@@ -35,5 +36,6 @@
 		<mapper resource="mybatis/Pharmacy.xml"/>
 		<mapper resource="mybatis/NightPharmacy.xml"/>
 		<mapper resource="mybatis/HInfoCateg.xml"/>
+		<mapper resource="mybatis/HInfo.xml"/>
 	</mappers>
 </configuration>

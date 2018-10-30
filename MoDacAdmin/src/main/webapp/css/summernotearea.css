@@ -1,0 +1,44 @@
+.navbar.default-layout{
+	border:none;
+	margin-bottom:0px;
+	padding-bottom: 0px;
+}
+/* 섬머노트 때문에 깨지는 부분 수정 */
+.navbar.default-layout .navbar-brand-wrapper .navbar-brand {
+    color: #ffffff;
+    font-size: 1.5rem;
+    line-height: 48px;
+    margin-right: 0;
+    padding: 0.25rem 0;
+    height: 100%;
+    width: auto
+}
+/* 아래 테스트용 적용 잘안됨 */
+ .container-fluid .page-body-wrapper { 
+ 	margin-top:-100px; 
+ 	padding-top:-100px; 
+ 	width: 0%; 
+ }  
+.container-scroller{
+	padding-top:-500px;
+ 	margin-top:-170px;
+}
+
+#topnav{
+ 	margin-top: 166px;
+ 	margin-bottom:-80px;
+}
+
+img{
+	max-width:500px;
+	height:auto;
+}
+
+#img_resize{
+	max-width:500px;
+	height:auto;
+}
+
+.page-body-wrapper{
+	padding-right: 0px;
+}

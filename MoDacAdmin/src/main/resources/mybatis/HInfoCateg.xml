@@ -37,9 +37,9 @@
 	</select>
 	
 	<!-- 상세보기 -->
-	<select id="noticeOne" resultType="noticeDto" parameterType="java.util.Map">
-		SELECT * FROM notice 
-		WHERE no=#{no} 
+	<select id="hinfocategOne" resultType="hinfocategDto" parameterType="java.util.Map">
+		SELECT * FROM healthinfocategory 
+		WHERE categno=#{categno} 
 	</select>
 	
 	<!-- 페이징위한 레코드 개수 얻기 -->
@@ -51,13 +51,13 @@
 	</select>
 
 	<!-- delete -->	
-	<delete id="noticeDelete" parameterType="noticeDto">
-		DELETE notice WHERE no = #{no}
+	<delete id="hinfocategDelete" parameterType="hinfocategDto">
+		DELETE healthinfocategory WHERE categno = #{categno}
 	</delete>
 	
 	<!-- update -->
-	<update id="noticeUpdate" parameterType="noticeDto">
-		UPDATE notice SET title = #{title}, content = #{content}
-		WHERE no = #{no}
+	<update id="hinfocategUpdate" parameterType="hinfocategDto">
+		UPDATE healthinfocategory SET categname = #{categname}, explanation = #{explanation}, categimage = #{categimage}
+		WHERE categno = #{categno}
 	</update>
 </mapper>

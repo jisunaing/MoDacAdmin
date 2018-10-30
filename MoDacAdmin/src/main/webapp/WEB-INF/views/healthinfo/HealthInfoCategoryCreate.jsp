@@ -4,11 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>  -->
-<%
-	if(request.getParameter("uploadPath") != null) {
-		System.out.println("uploadPath");
-	}
-%>
+<link rel="stylesheet" href="<c:url value='css/filebox.css'/>">
+
 <!-- 파일 미리보기 추가 부분 -->
 <script>
 function getThumbnailPrivew(html, $target) {
@@ -25,43 +22,6 @@ function getThumbnailPrivew(html, $target) {
 }
 </script>
 
-<style>
-	.form-control{
-		border-width: 2px;
-	}
-	
-	.filebox label { /* 파일 선택 버튼으로 쓰일 label */
-	    display: inline-block;
-	    padding: .5em .75em;
-	    color: #999;
-	    font-size: inherit;
-	    line-height: normal;
-	    vertical-align: middle;
-	    background-color: #fdfdfd;
-	    cursor: pointer;
-	    border: 1px solid #ebebeb;
-	    border-bottom-color: #e2e2e2;
-	    border-radius: .25em;
-	    font-size: 1.3em;
-	}
-	 
- 	.filebox input[type="file"] {  /* 파일 필드 숨기기 */ 
- 	    position: absolute; 
- 	    width: 1px; 
- 	    height: 1px; 
- 	    padding: 0; 
- 	    margin: -1px; 
- 	    overflow: hidden; 
- 	    clip:rect(0,0,0,0); 
- 	    border: 0; 
- 	} 
-	
-	#img_resize { /* 이미지 크기 지정 */
-		max-width: 665px;
-    	height: auto;
-	}
-	
-</style> 
 <div class="col-md-12 grid-margin stretch-card">
 	<div class="card">
 		<div class="card-body">

@@ -22,7 +22,7 @@ public class ManagersDao implements ManagersService {
 	public boolean isManager(Map<String, String> map) {
 		System.out.println(template);
 //		System.out.println("id:"+map.get("mpid").toString());
-		System.out.println("결과:"+template.selectOne("loginIsManager", map));
+//		System.out.println("결과:"+template.selectOne("loginIsManager", map));
 		return (Integer)template.selectOne("loginIsManager", map) == 1? true: false;
 	}
 	

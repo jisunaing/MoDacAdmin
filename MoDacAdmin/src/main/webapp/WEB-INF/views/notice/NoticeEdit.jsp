@@ -19,27 +19,43 @@
 	border:none;
 	margin-bottom:0px;
 	padding-bottom: 0px;
-	
 }
+/* 섬머노트 때문에 깨지는 부분 수정 */
 .navbar.default-layout .navbar-brand-wrapper .navbar-brand {
     color: #ffffff;
     font-size: 1.5rem;
     line-height: 48px;
     margin-right: 0;
     padding: 0.25rem 0;
-    padding-top:15px;
-    
+    height: 100%;
+    width: auto
 }
-.container-fluid .page-body-wrapper {
-	margin-top:-100px;
-	padding-top:-100px;
-	width: 0%;
+/* 아래 테스트용 적용 잘안됨 */
+ .container-fluid .page-body-wrapper { 
+ 	margin-top:-100px; 
+ 	padding-top:-100px; 
+ 	width: 0%; 
+ }  
+.container-scroller{
+	padding-top:-500px;
+ 	margin-top:-170px;
 }
+
+#topnav{
+ 	margin-top: 166px;
+ 	margin-bottom:-80px;
+}
+
 img{
 	max-width:1200px;
 	height:auto;
-} 
+}
+
+.page-body-wrapper{
+	padding-right: 0px;
+}
 </style>
+
 <script>
 //jQuery ui의 https://jqueryui.com/effect/참조함
 $(function(){
@@ -99,7 +115,7 @@ function sendFile(file, el) {
 <div class="col-md-12 grid-margin stretch-card">
 	<div class="card">
 		<div class="card-body">
-			<h1>공지사항 수정</h1>
+			<h3 style="font-family: monospace;"><strong>공지사항 수정</strong></h3>
 			<br>
 			<form class="forms-sample" method="post" action="<c:url value='NoticeEdit.do'/>">
 				<input type="hidden" name="no" value="${record.no}" />

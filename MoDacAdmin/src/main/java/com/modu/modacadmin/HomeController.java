@@ -3,6 +3,7 @@ package com.modu.modacadmin;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.modu.modacadmin.service.HInfoCategDto;
+import com.modu.modacadmin.service.HInfoDto;
+import com.modu.modacadmin.service.NoticeDto;
 
 /**
  * Handles requests for the application home page.
@@ -47,40 +53,10 @@ public class HomeController {
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	/*
-	@RequestMapping("healthinfoList.do")
-	public String HealthInfoList() throws Exception {
-		return "healthinfo/HealthInfoList.tiles";
-	}
-	*/
 
 	@RequestMapping("healthinfoCategoryCreate.do")
 	public String HealthInfoCategoryCreate() throws Exception {
 		return "healthinfo/HealthInfoCategoryCreate.tiles";
 	}
 
-	@RequestMapping("healthinfoCategoryView.do")
-	public String HealthInfoCategoryView() throws Exception {
-		return "healthinfo/HealthInfoCategoryView.tiles";
-	}
-
-	@RequestMapping("healthinfoCategoryEdit.do")
-	public String HealthInfoCategoryEdit() throws Exception {
-		return "healthinfo/HealthInfoCategoryEdit.tiles";
-	}
-
-	@RequestMapping("healthinfoView.do")
-	public String HealthInfoView() throws Exception {
-		return "healthinfo/HealthInfoView.tiles";
-	}
-
-	@RequestMapping("healthinfoEdit.do")
-	public String HealthInfoEdit() throws Exception {
-		return "healthinfo/HealthInfoEdit.tiles";
-	}
-
-	@RequestMapping("healthinfoWrite.do")
-	public String HealthInfoWrite() throws Exception {
-		return "healthinfo/HealthInfoWrite.tiles";
-	}
 }

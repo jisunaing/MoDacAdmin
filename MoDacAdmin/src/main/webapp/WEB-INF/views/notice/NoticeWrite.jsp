@@ -31,24 +31,31 @@
     width: auto
 }
 /* 아래 테스트용 적용 잘안됨 */
-/* .container-fluid .page-body-wrapper { */
-/* 	margin-top:-100px; */
-/* 	padding-top:-100px; */
-/* 	width: 0%; */
-/* }  */
+ .container-fluid .page-body-wrapper { 
+ 	margin-top:-100px; 
+ 	padding-top:-100px; 
+ 	width: 0%; 
+ }  
 .container-scroller{
-/*  	padding-top:-500px;  */
+	padding-top:-500px;
  	margin-top:-170px;
 }
+
 #topnav{
-/*  	padding-top:1000px;  */
-/*  	margin-top: 100px  */
+ 	margin-top: 166px;
+ 	margin-bottom:-80px;
 }
+
 img{
 	max-width:1200px;
 	height:auto;
 }
+
+.page-body-wrapper{
+	padding-right: 0px;
+}
 </style>
+
 <script>
 //jQuery ui의 https://jqueryui.com/effect/참조함
 $(function(){
@@ -102,7 +109,7 @@ function sendFile(file, el) {
     });
 } // func
 </script>
-<%@include file="/WEB-INF/template/Top.jsp" %>
+<%-- <%@include file="/WEB-INF/template/Top.jsp" %> --%>
 <div class="col-md-12 grid-margin stretch-card">
 	<div class="card">
 		<div class="card-body">
@@ -115,7 +122,7 @@ function sendFile(file, el) {
 					<label>이미지 업로드</label> <br>
 					<input type="file" name="fileupload" value="fileupload" id="fileupload"> 
 				</div>
-			-->	
+			-->
 				<div class="form-group">
 					<label for="exampleInputName1">제목</label> 
 					<br/>

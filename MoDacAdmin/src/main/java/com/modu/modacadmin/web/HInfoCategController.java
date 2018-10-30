@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.modu.modacadmin.service.HInfoCategDto;
 import com.modu.modacadmin.service.HInfoCategService;
+import com.modu.modacadmin.service.HInfoDto;
+import com.modu.modacadmin.service.HInfoService;
 import com.modu.modacadmin.service.NoticeDto;
 import com.modu.modacadmin.service.NoticeService;
 import com.modu.modacadmin.service.impl.PagingUtil;
@@ -34,24 +36,18 @@ public class HInfoCategController {
 	@Resource(name="hInfoCategService")
 	private HInfoCategService service;
 	
-	// HInfoCateg list
+	@Resource(name="hInfoService")
+	private HInfoService hinfoservice;
+	
+	// Categ_create
 	@RequestMapping(value = "HInfoCategCreate.do", method = RequestMethod.POST)
 	public String hInfoCategCreate(HInfoCategDto dto) throws Exception {
-		System.out.println("HInfoCategCrerate.do_insertsss");
-		System.out.println("service: "+service);
-		System.out.println("dto.getimange: "+dto.getCategimage());
-		System.out.println("dto,getexplanation: "+dto.getExplanation());
 		service.insert(dto);
 		// list로 이동
 		return "forward:healthinfoList.do";
 	}
-	/*
-	@RequestMapping("healthinfoList.do")
-	public String HealthInfoList() throws Exception {
-		return "healthinfo/HealthInfoList.tiles";
-	}
-	*/
-	// notice list
+	
+	// HInfoCateg list
 	@RequestMapping("healthinfoList.do")
 	public String healthinfoList(Model model, 
 							HttpServletRequest req, 
@@ -68,7 +64,6 @@ public class HInfoCategController {
 		int end   = nowPage*pageSize;
 		map.put("start",start);
 		map.put("end",end);
-		System.out.println("병원 목록 페이지 list시작전");
 
 		//페이징을 위한 로직 끝]	
 		List<HInfoCategDto> list= service.selectList(map);
@@ -84,5 +79,67 @@ public class HInfoCategController {
 		return "healthinfo/HealthInfoList.tiles";
 	}
 	
+	@RequestMapping("healthinfoCategoryView.do")
+	public String healthInfoCategoryView(Model model, HttpServletRequest req, 
+								@RequestParam Map map, 
+								@RequestParam(required=false, defaultValue="1") int nowPage) throws Exception {
+
+		// 카테고리 상세보기
+		HInfoCategDto record = service.selectOne(map);
+		record.setExplanation(record.getExplanation().replace("\r\n","<br/>"));
+		model.addAttribute("record", record);
+		
+		// 카테고리 하위 리스트
+		int totalRecordCount= hinfoservice.getTotalRecord(map);	
+		System.out.println("hinfo_cnt: "+totalRecordCount);
+		int start = (nowPage-1)*pageSize+1;
+		int end   = nowPage*pageSize;
+		map.put("start",start);
+		map.put("end",end);
+		
+		List<HInfoDto> list = hinfoservice.selectList(map);
+		
+		String pagingString=PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+ "/healthinfoView.do?");
+
+		model.addAttribute("list", list);
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("nowPage", nowPage);
+		
+		System.out.println("list_size: "+list.size());
+		System.out.println("categno: "+map.get("categno"));
+		
+		return "healthinfo/HealthInfoCategoryView.tiles";
+	}
+
+	@RequestMapping("healthinfoCategoryEdit.do")
+	public String HealthInfoCategoryEdit(@RequestParam Map map, Model model) throws Exception {
+		HInfoCategDto record= service.selectOne(map);
+		model.addAttribute("record", record);
+		// 수정 폼으로 이동
+		return "healthinfo/HealthInfoCategoryEdit.tiles";
+	}
+	
+	@RequestMapping("HInfoCategEdit.do")
+	public String hInfoCategEdit(HInfoCategDto dto) throws Exception {
+		service.update(dto);
+		return "forward:healthinfoCategoryView.do?categno="+dto.getCategno();
+	}
+	
+	@RequestMapping("healthinfoDelete.do")
+	public String hInfoCategDelete(@RequestParam Map map, Model model) throws Exception {
+		HInfoCategDto record= service.selectOne(map);
+		try {
+			service.delete(record);
+			System.out.println("delete"+record.getCategno());
+			return "forward:healthinfoList.do";
+		} catch(Exception e) {
+			String alert = "카테고리에 글이 존재합니다. 관련 글을 삭제 후 카테고리를 삭제하세요";
+			model.addAttribute("alertmsg", alert);
+			
+			return "forward:healthinfoCategoryView.do?categno="+record.getCategno();
+		}
+	}
 }
 
