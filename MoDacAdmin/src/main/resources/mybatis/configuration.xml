@@ -16,6 +16,7 @@
 		<typeAlias alias="HospitalDto" type="com.modu.modacadmin.service.HospitalDto"/>
 		<typeAlias alias="PharmacyDto" type="com.modu.modacadmin.service.PharmacyDto"/>
 		<typeAlias alias="NightPharmacyDto" type="com.modu.modacadmin.service.NightPharmacyDto"/>
+<!-- 		<typeAlias type="com.modu.modacadmin.service.PQnaDto" alias="pQnaDto"/> -->
 	</typeAliases>
 	<!-- DTO등록 할 때 복사해서 쓰면 됨 별칭은 xxDto로 함 -->
 	<!--  
@@ -27,6 +28,7 @@
 		매퍼파일(sql쿼리와 자바빈 매핑) 정보 설정
 	-->
 	<mappers>
+<!-- 		<mapper resource="mybatis/PQna.xml"/> -->
 		<mapper resource="mybatis/Managers.xml"/>
 		<mapper resource="mybatis/Test.xml" />
 		<mapper resource="mybatis/Chart.xml"/>

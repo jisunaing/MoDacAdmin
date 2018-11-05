@@ -129,6 +129,7 @@ public class HInfoCategController {
 	
 	@RequestMapping("healthinfoDelete.do")
 	public String hInfoCategDelete(@RequestParam Map map, Model model) throws Exception {
+		map.put("categno", map.get("cateno"));
 		HInfoCategDto record= service.selectOne(map);
 		try {
 			service.delete(record);

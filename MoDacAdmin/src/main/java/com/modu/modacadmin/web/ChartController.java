@@ -35,7 +35,7 @@ public class ChartController {
       model.addAttribute("list", list);
       
       List<Map> listresult = backendService.reservationReception();
-      System.out.println(listresult);
+//      System.out.println(listresult);
       model.addAttribute("reservation",listresult.get(0));
       
 
@@ -92,11 +92,11 @@ public class ChartController {
          }//if
          else {
             model.addAttribute("chartError", "불러올 차트가 없어요");
-            System.out.println("불러올 차트가 없어요");
+//            System.out.println("불러올 차트가 없어요");
          }
          //병원 차트를 가져오기 위한 부분
          //병원 차트 요일별 저장하기
-         System.out.println("mon : "+mon);
+//         System.out.println("mon : "+mon);
          model.addAttribute("mon", mon);
          model.addAttribute("tue", tue);
          model.addAttribute("wed", wed);
@@ -106,12 +106,12 @@ public class ChartController {
          model.addAttribute("sun", sun);
       //예약 요일별 현환 차트 끝
          
-        System.out.println(day);
+//        System.out.println(day);
       //시간대별 차트 시작
       if(day!=null) {
           for(int i=0;i<day.size();i++) {
             calday.setTime(dateFormatday.parse(day.get(i).toString()));
-            System.out.println(calday.get(Calendar.HOUR_OF_DAY));
+//            System.out.println(calday.get(Calendar.HOUR_OF_DAY));
              switch (calday.get(Calendar.HOUR_OF_DAY)) {
               case 0:   d00++;   break;
               case 1:   d01++;   break;
@@ -141,11 +141,11 @@ public class ChartController {
               
               }//switch
            }//for
-          System.out.println("성공");
+//          System.out.println("성공");
         }//if
         else {
            model.addAttribute("chartError", "불러올 차트가 없어요");
-           System.out.println("불러올 차트가 없어요");
+//           System.out.println("불러올 차트가 없어요");
            
         }
         model.addAttribute("d00", d00);
@@ -176,7 +176,7 @@ public class ChartController {
          
          
        
-         System.out.println("메인 이동");
+//         System.out.println("메인 이동");
       return "Main";
    }
    

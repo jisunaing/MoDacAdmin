@@ -184,7 +184,9 @@
           <a class="dropdown-item">
             Check Inbox
           </a>
-          <a class="dropdown-item" href="Logout.do"> 
+          <form name="logoutform" action="<c:url value='/Logout.do'/>" method="post"></form>
+          <a class="dropdown-item" href="#" onclick="logoutform.submit();"> 
+<!--           <a class="dropdown-item" href="Logout.do">  -->
             Sign Out
           </a>
         </div>
