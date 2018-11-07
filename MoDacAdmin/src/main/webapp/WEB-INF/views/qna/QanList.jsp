@@ -18,7 +18,7 @@
 		<div class="col-lg-12 grid-margin stretch-card">
 		    <div class="card">
 		      <div class="card-body">
-		        <h4 class="card-title"><strong>공지사항</strong></h4>
+		        <h4 class="card-title"><strong>제휴병원 문의</strong></h4>
 		        <p class="card-description">
 				<!-- 메시지작성하는곳~ --><br/>
 		        </p>
@@ -26,10 +26,10 @@
 		          <table class="table table-hover">
 		            <thead>
 		              <tr>
-		                <th>#</th>
-		                <th>글제목</th>
-		                <th>작성일</th>
+		                <th>글 번호</th>
+		                <th>제목</th>
 		                <th>작성자</th>
+		                <th>작성일</th>
 		              </tr>
 		            </thead>
 		            <tbody>
@@ -43,10 +43,10 @@
 								<tr>
 									<td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>
 									<td class="text-left">
-										<a href="<c:url value='NoticeView.do?no=${record.no}'/>">${record.title }</a>
+										<a href="<c:url value='QnaView.do?no=${record.no}'/>">${record.title}</a>
 									</td>
-									<td>${record.postdate}</td>
-									<td>${record.genid }</td>
+									<td>${record.genid}</td>
+									<td>${record.postadate}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -64,7 +64,7 @@
 	<!-- 검색용 UI -->
 	<div class="row">
 		<div class="col-lg-12">
-			<form class="form-inline" method="post"	action="<c:url value='#'/>">
+			<form class="form-inline" method="post"	action="<c:url value='PQnaList.do'/>">
 				<div class="form-group">
 					<select name="searchColumn" class="form-control" >
 						<option value="title">제목</option>
@@ -76,6 +76,9 @@
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">검색</button>
+				</div>
+				<div class="form-group">
+					<a href="<c:url value='NoticeWriteForm.do'/>" id="btnInsert" class="btn btn-danger">새 공지 작성</a>
 				</div>
 			</form>
 		</div>

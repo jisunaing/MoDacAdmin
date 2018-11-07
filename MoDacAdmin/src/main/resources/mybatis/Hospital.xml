@@ -119,8 +119,8 @@
 	</select>
 	
 	<insert id="HospitalInsert" parameterType="java.util.Map">
-		INSERT INTO hospital (hosno, hosname, hosaddr, hosphone, mon, tue, wed, thu, fri, sat, sun, holiday) 
-		VALUES (seq_jihuntest.NEXTVAL, #{name}, #{addr}, #{phone}, #{mon}, #{thu}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun}, #{holiday})
+		INSERT INTO hospital (hosno, hosname, hosaddr, hosphone, mon, tue, wed, thu, fri, sat, sun, holiday, hoslat, hoslng) 
+		VALUES (seq_jihuntest.NEXTVAL, #{name}, #{addr}, #{phone}, #{mon}, #{thu}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun}, #{holiday}, #{lat}, #{lng})
 	</insert>
 	
 	<insert id="SubjectInsert" parameterType="java.util.Map">
@@ -145,7 +145,7 @@
 	
 	<update id="HospitalUpdate" parameterType="java.util.Map">
 		UPDATE hospital SET hosname=#{hosname}, hosaddr=#{hosaddr}, hosphone=#{hosphone},
-		mon=#{mon}, tue=#{tue}, wed=#{wed}, thu=#{thu}, fri=#{fri}, sat=#{sat}, sun=#{sun}, holiday=#{holiday}
+		mon=#{mon}, tue=#{tue}, wed=#{wed}, thu=#{thu}, fri=#{fri}, sat=#{sat}, sun=#{sun}, holiday=#{holiday}, hoslat=#{lat}, hoslng=#{lng}
 		WHERE hosno=#{hosno}  
 	</update>
 	

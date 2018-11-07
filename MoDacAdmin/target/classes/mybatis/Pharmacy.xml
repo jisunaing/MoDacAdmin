@@ -56,7 +56,7 @@
 	
 	<update id="PharmacyUpdate" parameterType="java.util.Map">
 		UPDATE pharmacy SET phname=#{name}, phaddr=#{addr}, phphone=#{phone}, pholiday=#{holiday},
-		phmon=#{mon}, phtue=#{tue}, phwed=#{wed}, phthu=#{thu}, phfri=#{fri}, phsat=#{sat}, phsun=#{sun}
+		phmon=#{mon}, phtue=#{tue}, phwed=#{wed}, phthu=#{thu}, phfri=#{fri}, phsat=#{sat}, phsun=#{sun}, phlat=#{lat}, phlng=#{lng}
 		WHERE phno=#{no}
 	</update>
 	
@@ -65,8 +65,8 @@
 	</delete>
 	
 	<insert id="PharmacyInsert" parameterType="java.util.Map">
-		INSERT INTO pharmacy (phno, phname, phaddr, pholiday, phphone, phmon, phtue, phwed, phthu, phfri, phsat, phsun)
-		VALUES (seq_pharm.NEXTVAL, #{name}, #{addr}, #{holiday}, #{phone}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun})
+		INSERT INTO pharmacy (phno, phname, phaddr, pholiday, phphone, phmon, phtue, phwed, phthu, phfri, phsat, phsun, phlat, phlng)
+		VALUES (seq_pharm.NEXTVAL, #{name}, #{addr}, #{holiday}, #{phone}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun}, #{lat}, #{lng})
 	</insert>
 	
 </mapper>

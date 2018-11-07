@@ -16,7 +16,8 @@
 		<typeAlias alias="HospitalDto" type="com.modu.modacadmin.service.HospitalDto"/>
 		<typeAlias alias="PharmacyDto" type="com.modu.modacadmin.service.PharmacyDto"/>
 		<typeAlias alias="NightPharmacyDto" type="com.modu.modacadmin.service.NightPharmacyDto"/>
-<!-- 		<typeAlias type="com.modu.modacadmin.service.PQnaDto" alias="pQnaDto"/> -->
+		<typeAlias alias="QnaDto" type="com.modu.modacadmin.service.QnaDto"/>
+		<typeAlias alias="PqnaDto" type="com.modu.modacadmin.service.PqnaDto"/>
 	</typeAliases>
 	<!-- DTO등록 할 때 복사해서 쓰면 됨 별칭은 xxDto로 함 -->
 	<!--  
@@ -39,5 +40,6 @@
 		<mapper resource="mybatis/NightPharmacy.xml"/>
 		<mapper resource="mybatis/HInfoCateg.xml"/>
 		<mapper resource="mybatis/HInfo.xml"/>
+		<mapper resource="mybatis/QnA.xml"/>
 	</mappers>
 </configuration>

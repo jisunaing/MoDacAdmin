@@ -9,8 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.2.4/email.min.js"></script>
 
-
-
 <style>
    
 html { overflow-y: scroll; }
@@ -103,7 +101,7 @@ text-align: left;
 					class="col-sm-12" />
 			</div>
 
-			<form action="#" method="post" id="parnterRequestSubmit">
+			<form action="#" method="post" id="parnterRequestSubmit" onsubmit="return false">
 			<input type="hidden" name="hosno" id="hosno" value="${HOSNO}">
 			<input type="hidden" name="pid" id="pid" value="${PID}">
 

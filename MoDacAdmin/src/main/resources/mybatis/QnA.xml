@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.MoDac_myBatis.QnA.xml">
+  
+  
+  <select id="PQnaList" parameterType="java.util.Map" resultType="PqnaDto">  
+        SELECT * FROM (SELECT T.*, ROWNUM R 
+                      FROM (SELECT P.*, (SELECT COUNT(*) FROM PQNA WHERE NO = P.NO) commentcount FROM pqna p
+                      JOIN PARTNERS PA ON P.PID = PA.PID
+                          <if test="searchColumn !=null">
+                          WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%' 
+                          </if>
+                      ORDER BY NO DESC)T)
+      WHERE R BETWEEN #{start} AND #{end} 
+  </select>
+  
+  
+    <select id="QnaList" parameterType="java.util.Map" resultType="QnaDto">
+   
+          SELECT * FROM (SELECT T.*, ROWNUM R 
+                      FROM (SELECT q.*, (SELECT COUNT(*) FROM QNA q WHERE NO = q.NO) commentcount FROM qna q
+                      JOIN GENMEMBER G ON G.GENID = Q.GENID
+                          <if test="searchColumn !=null">WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%' </if>
+                      ORDER BY NO DESC)T)
+      WHERE R BETWEEN #{start} AND #{end} 
+    
+  </select>
+  
+  
+
+   	<select id="PQnaRecord"  parameterType="java.util.Map" resultType="int">
+   	
+	select count(*) from pqna
+	
+	<if test="searchColumn !=null">
+   		WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+   		  	
+	</select>
+	
+	
+	
+	<select id="QnaRecord"  parameterType="java.util.Map" resultType="int">
+   	
+	select count(*) from qna
+	
+	<if test="searchColumn !=null">
+   		WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+   	</if>
+   		  	
+	</select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <select id="PQnaSelectOne" parameterType="java.util.Map" resultType="PqnaDto">
+      
+      select * from pqna where no = #{no}
+     
+      
+      </select>
+      
+      
+      
+      <select id="QnaSelectOne" parameterType="java.util.Map" resultType="QnaDto">
+      
+       select * from qna where no = #{no}
+      
+      </select>
+      
+      
+      
+      <delete id="PQnaDelete" parameterType="java.util.Map">
+      
+      delete pqna where no = #{no}
+     
+      
+      </delete>
+      
+      
+      
+      
+      <delete id="QnaDelete" parameterType="java.util.Map">
+      
+       delete qna where no = #{no}
+      
+      </delete>
+  
+  
+  
+  
+  
+  
+   
+   
+   
+   
+</mapper>

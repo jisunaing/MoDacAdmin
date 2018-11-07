@@ -55,7 +55,7 @@
 	
 	<update id="NightPharmacyUpdate" parameterType="java.util.Map">
 		UPDATE  nightpharmacy SET nphname=#{name}, nphaddr=#{addr}, nphphone=#{phone}, npholiday=#{holiday},
-		nphmon=#{mon}, nphtue=#{tue}, nphwed=#{wed}, nphthu=#{thu}, nphfri=#{fri}, nphsat=#{sat}, nphsun=#{sun}
+		nphmon=#{mon}, nphtue=#{tue}, nphwed=#{wed}, nphthu=#{thu}, nphfri=#{fri}, nphsat=#{sat}, nphsun=#{sun}, nphlat=#{lat}, nphlng=#{lng}
 		WHERE nphno=#{no}
 	</update>
 	
@@ -64,8 +64,8 @@
 	</delete>
 	
 	<insert id="NightPharmacyInsert" parameterType="java.util.Map">
-		INSERT INTO nightpharmacy (nphno, nphname, nphaddr, npholiday, nphphone, nphmon, nphtue, nphwed, nphthu, nphfri, nphsat, nphsun)
-		VALUES (seq_nightpharm.NEXTVAL, #{name}, #{addr}, #{holiday}, #{phone}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun})
+		INSERT INTO nightpharmacy (nphno, nphname, nphaddr, npholiday, nphphone, nphmon, nphtue, nphwed, nphthu, nphfri, nphsat, nphsun, nphlat, nphlng)
+		VALUES (seq_nightpharm.NEXTVAL, #{name}, #{addr}, #{holiday}, #{phone}, #{mon}, #{tue}, #{wed}, #{thu}, #{fri}, #{sat}, #{sun}, #{lat}, #{lng})
 	</insert>
 	
 </mapper>

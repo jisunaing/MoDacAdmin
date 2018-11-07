@@ -107,7 +107,10 @@
       <div class="collapse" id="ui-qna">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-          	<a href="<c:url value='PQnaList.do'/>">병원문의관리</a>
+          	<a href="<c:url value='PQnaList.do'/>">병원 문의관리</a>
+          </li>
+          <li class="nav-item">
+          	<a href="<c:url value='QnaList.do'/>">일반회원 문의관리</a>
           </li>
         </ul>
       </div>

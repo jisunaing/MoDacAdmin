@@ -4,10 +4,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86b3c01c90f39e52ac7267db068b72c3&libraries=services,clusterer,drawing"></script>
 <script>
 /* 유효성 체크 */
 	$(function() {
+		
+		$('#addr').keyup(function(){
+	         var geocoder = new daum.maps.services.Geocoder();
+	         var address = document.getElementById('addr').value;
+	         
+	         geocoder.addressSearch(address, function(result, status) {
+	            
+	              if (status === daum.maps.services.Status.OK) {
+		               var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+		               $('#message').css('color','green').html('해당 주소는 지도상에 표시할 수 있습니다.');  		                 
+		               $('#lat').val(coords.getLat());
+		               $('#lng').val(coords.getLng());
+	             } else {
+	            	   $('#message').css('color','red').html('해당 주소는 지도상에 표시할 수 없습니다.');
+	            	   $('#lat').val('nopos');
+		               $('#lng').val('nopos');
+	             }
+	         });
+	    });
+		
 		$('form').on('submit', function() {
 			if ($("#name").val() == "") {
 				alert("병원명을 입력하세요");
@@ -104,7 +124,9 @@
         <div class="form-group row">
           <label for="addr" class="col-sm-1 col-form-label"><strong>주소</strong></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/>
+            <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/><span id="message"></span>
+            <input type="hidden" name="lat" id="lat"/>
+            <input type="hidden" name="lng" id="lng"/>
           </div>
         </div>
         

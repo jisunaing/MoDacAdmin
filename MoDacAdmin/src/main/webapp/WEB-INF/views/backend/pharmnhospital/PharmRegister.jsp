@@ -1,78 +1,115 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86b3c01c90f39e52ac7267db068b72c3&libraries=services,clusterer,drawing"></script>
 <script>
 /* 유효성 체크 */
 $(function() {
-		$('form').on('submit', function() {
-			if ($("#name").val() == "") {
-				alert("약국명을 입력하세요");
-				$("#name").focus();
-				return false;
-			}
-			if ($("#phone").val() == "") {
-				alert("연락처를 입력하세요");
-				$("#phone").focus();
-				return false;
-			}
-			if ($("#addr").val() == "") {
-				alert("주소를 입력하세요");
-				$("#addr").focus();
-				return false;
-			}
-			if ($("#mon").val() == "") {
-				alert("월요일 영업시간을 입력하세요");
-				$("#mon").focus();
-				return false;
-			}
-			if ($("#tue").val() == "") {
-				alert("화요일 영업시간을 입력하세요");
-				$("#tue").focus();
-				return false;
-			}
-			if ($("#wed").val() == "") {
-				alert("수요일 영업시간을 입력하세요");
-				$("#wed").focus();
-				return false;
-			}
-			if ($("#thu").val() == "") {
-				alert("목요일 영업시간을 입력하세요");
-				$("#thu").focus();
-				return false;
-			}
-			if ($("#fri").val() == "") {
-				alert("금요일 영업시간을 입력하세요");
-				$("#fri").focus();
-				return false;
-			}
-			if ($("#sat").val() == "") {
-				alert("토요일 영업시간을 입력하세요");
-				$("#sat").focus();
-				return false;
-			}
-			if ($("#sun").val() == "") {
-				alert("일요일 영업시간을 입력하세요");
-				$("#sun").focus();
-				return false;
-			}
-			if ($("#holiday").val() == "") {
-				alert("공휴일 영업시간을 입력하세요");
-				$("#holiday").focus();
-				return false;
-			}
-		});
-	});
+      
+      $('#addr').keyup(function(){
+         var geocoder = new daum.maps.services.Geocoder();
+         var address = document.getElementById('addr').value;
+         
+         geocoder.addressSearch(address, function(result, status) {
+            
+              if (status === daum.maps.services.Status.OK) {
+	             var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	             $('#message').css('color','green').html('해당 주소는 지도상에 표시할 수 있습니다.');  
+	             $('#lat').val(coords.getLat());
+	             $('#lng').val(coords.getLng());
+             } else {
+            	 $('#message').css('color','red').html('해당 주소는 지도상에 표시할 수 없습니다.');
+            	 $('#lat').val('nopos');
+	             $('#lng').val('nopos');
+             } 
+         });
+      });
+      
+      var geocoder = new daum.maps.services.Geocoder();
+      var address = document.getElementById('addr').value;
+      
+      geocoder.addressSearch(address, function(result, status) {
+           if (status === daum.maps.services.Status.OK) {
+	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	            $('#lat').val(coords.getLat());
+	            $('#lng').val(coords.getLng());
+          } else {
+        	    $('#lat').val('nopos');
+                $('#lng').val('nopos');
+          }
+      });
+   		
+      $('button').on('click', function() {
+            
+            if ($("#name").val() == "") {
+                alert("약국명을 입력하세요");
+               $("#name").focus();
+               return false;
+             }
+            if ($("#phone").val() == "") {
+               alert("연락처를 입력하세요");
+               $("#phone").focus();
+               return false;
+            }
+            if ($("#addr").val() == "") {
+               alert("주소를 입력하세요");
+               $("#addr").focus();
+               return false;
+            } 
+            if ($("#mon").val() == "") {
+               alert("월요일 영업시간을 입력하세요");
+               $("#mon").focus();
+               return false;
+            }
+            if ($("#tue").val() == "") {
+               alert("화요일 영업시간을 입력하세요");
+               $("#tue").focus();
+               return false;
+            }
+            if ($("#wed").val() == "") {
+               alert("수요일 영업시간을 입력하세요");
+               $("#wed").focus();
+               return false;
+            }
+            if ($("#thu").val() == "") {
+               alert("목요일 영업시간을 입력하세요");
+               $("#thu").focus();
+               return false;
+            }
+            if ($("#fri").val() == "") {
+               alert("금요일 영업시간을 입력하세요");
+               $("#fri").focus();
+               return false;
+            }
+            if ($("#sat").val() == "") {
+               alert("토요일 영업시간을 입력하세요");
+               $("#sat").focus();
+               return false;
+            }
+            if ($("#sun").val() == "") {
+               alert("일요일 영업시간을 입력하세요");
+               $("#sun").focus();
+               return false;
+            }
+            if ($("#holiday").val() == "") {
+               alert("공휴일 영업시간을 입력하세요");
+               $("#holiday").focus();
+               return false;
+            }
+            
+      });
+      
+   });
 </script>
 
 <style>
-	.card-title {
-		font-size: 1.6em;
-	
-	}
+   .card-title {
+      font-size: 1.6em;
+   
+   }
 </style>
 
  <div class="col-12 stretch-card">
@@ -80,7 +117,7 @@ $(function() {
     <div class="card-body">
       <h4 class="card-title"><strong>약국 등록하기</strong></h4>
       <p class="card-description">
-       	- 새로운 약국을 등록합니다.
+          - 새로운 약국을 등록합니다.
       </p>
       
       <hr/>
@@ -101,26 +138,28 @@ $(function() {
         <div class="form-group row">
           <label for="addr" class="col-sm-1 col-form-label"><strong>주소</strong></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/>
+            <input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/><span id="message"></span>
+            <input type="hidden" id="lat" name="lat"/>
+            <input type="hidden" id="lng" name="lng"/>
           </div>
         </div>
         
        <hr/> 
        
        <div class="form-group row">
-       		 <label for="addr" class="col-sm-1 col-form-label"><strong>약국종류</strong></label>
-       		 <div class="col-sm-6">
-		       	 <div class="form-radio">
-		          <label class="form-check-label">
-		            <input type="radio" name="pharm" class="form-check-input" value="all" checked> 일반약국
-		          </label>
-		         </div>
-		       	 <div class="form-radio">
-		          <label class="form-check-label">
-					 <input type="radio" name="pharm" class="form-check-input" value="night"> 심야약국		           
-		          </label>
-		         </div>
-	        </div>
+              <label for="addr" class="col-sm-1 col-form-label"><strong>약국종류</strong></label>
+              <div class="col-sm-6">
+                 <div class="form-radio">
+                <label class="form-check-label">
+                  <input type="radio" name="pharm" class="form-check-input" value="all" checked> 일반약국
+                </label>
+               </div>
+                 <div class="form-radio">
+                <label class="form-check-label">
+                <input type="radio" name="pharm" class="form-check-input" value="night"> 심야약국                 
+                </label>
+               </div>
+           </div>
        </div>
        
        <hr/>
@@ -128,7 +167,7 @@ $(function() {
        <div class="form-group row">
           <label for="contact" class="col-sm-1 col-form-label"></label>
           <div class="col-sm-3 col-form-label">
-    	      <label for="contact" class="col-form-label">쉬는 요일은 <strong>휴무</strong>로 입력해주십시오.</label>
+             <label for="contact" class="col-form-label">쉬는 요일은 <strong>휴무</strong>로 입력해주십시오.</label>
           </div>
         </div>
         
