@@ -520,7 +520,7 @@
               <div class="card">
                 <div class="card-body">
                    <div class="chartjs-size-monitor">
-                     <h4 class="card-title">시간대별</h4>
+                     <h4 class="card-title">시간대별 예약</h4>
                      <canvas class="chartjs-render-monitor" id="lineChart" style="height:250px"></canvas>
                    </div>
                 </div>
@@ -543,7 +543,7 @@
               <div class="card">
                 <div class="card-body">
                    <div class="chartjs-size-monitor">
-                     <h4 class="card-title">나이대별</h4>
+                     <h4 class="card-title">나이대별 회원비율</h4>
                      <canvas class="chartjs-render-monitor" id="pieChart" style="height:250px"></canvas>
                    </div>
                 </div>
@@ -553,7 +553,7 @@
               <div class="card">
                 <div class="card-body">
                    <div class="chartjs-size-monitor">
-                     <h4 class="card-title">요일별</h4>
+                     <h4 class="card-title">요일별 예약</h4>
                      <canvas class="chartjs-render-monitor" id="barChart" style="height:230px"></canvas>
                    </div>
                 </div>

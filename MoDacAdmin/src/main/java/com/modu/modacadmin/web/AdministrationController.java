@@ -232,7 +232,7 @@ public class AdministrationController {
 		int end   = nowPage*pageSize;
 		map.put("start",start);
 		map.put("end",end);
-		
+/*		
 		if(map.get("searchWord") !=null) {
 			
 			
@@ -247,11 +247,11 @@ public class AdministrationController {
 			
 		}//if
 		else {
-			
+			*/
 			String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage,
-					nowPage,req.getContextPath()+ "PartnersRequest.do?");
+					nowPage,req.getContextPath()+ "/PartnerList.do?");
 			model.addAttribute("pagingString", pagingString);
-		}
+//		}
 	
 		model.addAttribute("totalRecordCount", totalRecordCount);
 		model.addAttribute("nowPage", nowPage);

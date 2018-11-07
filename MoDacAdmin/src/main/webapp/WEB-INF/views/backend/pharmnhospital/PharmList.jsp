@@ -80,7 +80,7 @@
 	<!-- 검색용 UI -->
 	<div class="row">
 		<div class="col-lg-12">
-			<form class="form-inline" method="post"	action="<c:url value='PharmacySearch.do'/>">
+			<form class="form-inline" style="float:left" method="post"	action="<c:url value='PharmacySearch.do'/>">
 				<div class="form-group">
 					<select name="pharm" class="form-control">
 						<option value="all">모든 약국</option>

@@ -101,7 +101,7 @@ text-align: left;
 					class="col-sm-12" />
 			</div>
 
-			<form action="#" method="post" id="parnterRequestSubmit" onsubmit="return false">
+			<form action="#" method="post" id="parnterRequestSubmit" >
 			<input type="hidden" name="hosno" id="hosno" value="${HOSNO}">
 			<input type="hidden" name="pid" id="pid" value="${PID}">
 
@@ -183,9 +183,12 @@ text-align: left;
 </div>
 
 
-
 <script>	
 	$(function() {
+		$('input[name=hosno]').keydown(function(key){
+			if(key.keyCode == 13) 
+	 			$('parnterRequestSubmit').attr('onsubmit', 'return false');
+		});
 		
 		$("#btnOK").click(function() {
 			
@@ -208,7 +211,7 @@ text-align: left;
 			emailjs.send(service_id,template_id,template_params);
 			
 			
-			
+// 			$('parnterRequestSubmit').attr('onsubmit', 'return true');
 			$('#parnterRequestSubmit').submit();
 		
 			

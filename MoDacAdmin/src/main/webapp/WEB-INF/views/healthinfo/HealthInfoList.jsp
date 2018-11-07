@@ -19,7 +19,7 @@
 			<div class="card-body">
 				<h1>프론트엔드 메인의 건강정보 목록</h1>
 				<!-- 추가용 버튼  시작-->
-				<div style="padding-bottom: 3%; padding-left: 80%">
+				<div style="padding-bottom: 3%; float: right;">
 					<a href="<c:url value='healthinfoCategoryCreate.do'/>">
 						<button type="button" class="btn btn-outline-info btn-fw">
 							<i class="mdi mdi-upload"></i>새로운 카테고리 등록하기

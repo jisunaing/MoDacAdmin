@@ -70,7 +70,7 @@
 				<h1>소아시력 카테고리 관련 글 목록</h1>
 				<br>
 				<div class="table-responsive">
-					<div style="padding-bottom: 3%; padding-left: 80%; padding-right: 1px;">
+					<div style="padding-bottom: 3%; float: right;">
 						<a href="<c:url value='healthinfoWriteForm.do?categno=${record.categno}'/>">
 							<button type="button" class="btn btn-outline-info btn-fw">
 								<i class="mdi mdi-upload"></i>새로운 글 등록하기
