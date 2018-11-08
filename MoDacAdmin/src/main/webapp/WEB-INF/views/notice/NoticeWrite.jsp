@@ -6,20 +6,20 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 
 <!-- include libraries(jQuery, bootstrap) -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <!-- include summernote css/js-->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	
-<style>
+<style>  
 .navbar.default-layout{
 	border:none;
 	margin-bottom:0px;
 	padding-bottom: 0px;
-}
+}    
 /* 섬머노트 때문에 깨지는 부분 수정 */
 .navbar.default-layout .navbar-brand-wrapper .navbar-brand {
     color: #ffffff;
@@ -30,17 +30,17 @@
     height: 100%;
     width: auto
 }
-/* 아래 테스트용 적용 잘안됨 */
+/* 아래 테스트용 적용 잘안됨 */     
  .container-fluid .page-body-wrapper { 
  	margin-top:-100px; 
  	padding-top:-100px; 
- 	width: 0%; 
+ 	width: 0%;        
  }  
 .container-scroller{
 	padding-top:-500px;
  	margin-top:-170px;
 }
-
+            
 #topnav{
  	margin-top: 166px;
  	margin-bottom:-80px;
