@@ -91,21 +91,10 @@ function sendFile(file, el) {
         contentType : false,
         enctype: 'multipart/form-data',
         processData : false,
-        success : function(data) { // 처리가 성공할 경우
+        success : function(data) { // 파일 업로드 처리가 성공할 경우
               // 에디터에 이미지 출력
-//         	$(editor).summernote('editor.insertImage', data.url);
-//         	editor.summernote(welEditable, data.url);
-		 console.log(data.url);
-		 console.log(data.fileName);
-		 
-//          $(el).summernote('editor.insertImage', data.url);
 		 $(el).summernote('editor.insertImage', "Upload/"+data.fileName);
-// 	     $('#imageBoard > ul').append('<li><img src="'+data.fileName+'" width="480" height="auto"/></li>');
         }
-//  success: function(url) {
-//  $(el).summernote('editor.insertImage', url);
-//  $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
-//}
     });
 } // func
 </script>

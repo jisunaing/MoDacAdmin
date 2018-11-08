@@ -9,31 +9,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-	System.out.println("ImageUpload.jsp_경로얻어오는페이지");
-	// 이미지 업로드할 경로
-// 	String uploadPath = "/Upload";
 	// 절대경로 얻기
 	String uploadPath = session.getServletContext().getRealPath("/Upload");
 	
 	int size = 10 * 1024 * 1024; // 업로드 사이즈 제한 10M 이하
 	String fileName = ""; // 파일명
-	String isHinfo = null;
+	String isHinfo = null; // 페이지들을 구분하는 정보 담는 변수
 	MultipartRequest multi = null;
 	try {
-		// 파일업로드 및 업로드 후 파일명 가져옴
+		// 파일 서버에 업로드 및 업로드 후 파일명 가져옴
 		multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
 		Enumeration files = multi.getFileNames();
 		String file = (String) files.nextElement();
 		fileName = multi.getFilesystemName(file);
 		isHinfo = multi.getParameter("hinfo");
-		System.out.println("isHinfo"+isHinfo);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	// 업로드된 경로와 파일명을 통해 이미지의 경로를 생성
 	uploadPath = uploadPath + "\\" + fileName;
-	System.out.println("uploadPath:"+uploadPath);
 	
 	if (isHinfo == null || isHinfo.trim().equals("")) {
 		// 생성된 경로를 JSON 형식으로 보내주기 위한 설정
@@ -45,7 +40,6 @@
 		out.print(jobj.toJSONString());
 	}else if(isHinfo.equals("category")) { // 건강정보_카테고리
 		fileName = "<img id='img_resize' src='Upload/" + fileName + "' border='0' alt='' />";
-		System.out.println("fileName: "+fileName);
 		String categname = multi.getParameter("categname");
 		String explanation = multi.getParameter("explanation");
 		explanation.replace("\r\n", "<br/>");
@@ -64,11 +58,9 @@
 	<%
 	} else if(isHinfo.equals("hinfo")){
 		fileName = "<img id='img_resize' src='Upload/" + fileName + "' border='0' alt='' />";
-		System.out.println("건강정보_hinfo_fileName: "+fileName);
 		String categno = multi.getParameter("categno");
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
-		System.out.println("content: "+content);
 		String image = fileName;
 	%>
 		<form name="fupload" method="post" action="HealthinfoWrite.do">

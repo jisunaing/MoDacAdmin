@@ -232,34 +232,14 @@ public class AdministrationController {
 		int end   = nowPage*pageSize;
 		map.put("start",start);
 		map.put("end",end);
-/*		
-		if(map.get("searchWord") !=null) {
-			
-			
-			String searchWord = map.get("searchWord").toString();
-			String searchColumn = map.get("searchColumn").toString();
-			
-			String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage,
-					nowPage,req.getContextPath()+ "PartnersRequest.do?searchWord="+searchWord+"&searchColumn="+searchColumn+"&");
-			
-			
-			model.addAttribute("pagingString", pagingString);
-			
-		}//if
-		else {
-			*/
 			String pagingString = PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage,
 					nowPage,req.getContextPath()+ "/PartnerList.do?");
 			model.addAttribute("pagingString", pagingString);
-//		}
 	
 		model.addAttribute("totalRecordCount", totalRecordCount);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("pageSize", pageSize);				
 		model.addAttribute("partner",partner);
-		
-		
-		
 
 		return "backend/administration/partnerList.tiles";
 	}/// partnerRequest
